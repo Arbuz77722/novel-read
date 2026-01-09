@@ -5,6 +5,7 @@ import StyledHeading from '../../ui/StyledHeading';
 import Spinner from '../../ui/Spinner';
 import { useBooks } from '../books/useBooks';
 import { useBookNavigation } from '../../hooks/useBookNavigation';
+import RankingBookItemSkeleton from '../../ui/skeletons/RankingBookItemSkeleton';
 
 const StyledRanking = styled.div`
   display: flex;
@@ -44,21 +45,21 @@ function Rankings() {
           const { books, isPending } = useBooks({ ranking, limit: 10 });
           return (
             <Section key={title}>
-              {isPending ? (
-                <Spinner />
-              ) : (
-                <BookSection
-                  books={books}
-                  ItemComponent={(props) => (
+              <BookSection
+                books={books}
+                ItemComponent={(props) =>
+                  isPending ? (
+                    <RankingBookItemSkeleton />
+                  ) : (
                     <RankingBookItem {...props} type={type} />
-                  )}
-                  tableTitle={title}
-                  gridCols={1}
-                  gap='1rem'
-                  margin='0'
-                  onBookClick={goToBook}
-                />
-              )}
+                  )
+                }
+                tableTitle={title}
+                gridCols={1}
+                gap='1rem'
+                margin='0'
+                onBookClick={goToBook}
+              />
             </Section>
           );
         })}

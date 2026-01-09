@@ -4,9 +4,9 @@ export function useContinueReading() {
   const navigate = useNavigate();
 
   function continueReading(book) {
-    const { slug, firstChapterId, lastReadChapter } = book;
+    const { slug, firstChapterId, lastReadChapterId } = book;
 
-    const targetChapter = lastReadChapter ?? firstChapterId;
+    const targetChapter = lastReadChapterId ?? firstChapterId;
 
     if (!targetChapter) return;
 

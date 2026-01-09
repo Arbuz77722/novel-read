@@ -1,23 +1,29 @@
 import { useBookNavigation } from '../../hooks/useBookNavigation';
 import BookSection from '../../ui/BookSection';
 import RecentlyAddedChaptersItem from '../../ui/RecentlyAddedChaptersItem';
+import BookCardSkeleton from '../../ui/skeletons/BookCardSkeleton';
 import Spinner from '../../ui/Spinner';
 import { useBooksByFilter } from '../books/useBooksByFilter';
 
 function RecentlyAddedChapters() {
-  const {
-    books: ongoingBooks = [],
-    isPending,
-    error,
-  } = useBooksByFilter({
+  const { books: ongoingBooks = [], isPending } = useBooksByFilter({
     orderBy: 'updates',
     limit: 12,
   });
   const { goToBook } = useBookNavigation();
-  if (error) {
-    return <div>Error loading books: {error.message}</div>;
+
+  if (isPending) {
+    return (
+      <BookSection
+        ItemComponent={BookCardSkeleton}
+        heading='New Ongoing Releases'
+        books={Array(12).fill({})} // Fake array to render 12 skeletons
+        display='flex'
+        justify='space-between'
+      />
+    );
   }
-  if (isPending) return <Spinner />;
+
   return (
     <BookSection
       ItemComponent={RecentlyAddedChaptersItem}

@@ -1,5 +1,11 @@
+import NotificationSetting from '../../ui/NotificationSetting';
+
 function ProfileSetting() {
-  return <div></div>;
+  return (
+    <div>
+      <NotificationSetting />
+    </div>
+  );
 }
 
 export default ProfileSetting;

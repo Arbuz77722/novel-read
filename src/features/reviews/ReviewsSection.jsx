@@ -10,6 +10,7 @@ import { useBookReviews } from './useBookReviews';
 import { useSubmitReviews } from './useSubmitReviews';
 import { useState } from 'react';
 import { calculateReviewStats } from '../../utils/calculateReviewStats';
+import ReviewsSectionSkeleton from '../../ui/skeletons/ReviewsSectionSkeleton';
 
 const ReviewsContainer = styled.div`
   padding: 3rem;
@@ -123,7 +124,7 @@ export default function ReviewsSection({ book }) {
   const { submitReview } = useSubmitReviews(book?.id);
   const [showModal, setShowModal] = useState(null);
 
-  if (!book?.id) return <div>Error: Invalid book ID</div>;
+  if (isLoading) return <ReviewsSectionSkeleton />;
 
   const stats = calculateReviewStats(reviews);
 

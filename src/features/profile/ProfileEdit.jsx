@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import UpdateUserNameForm from './library/UpdateUserNameForm';
-import UpdatePasswordForm from './library/UpdateUserPasswordForm';
+import UpdateUserNameForm from './edit/UpdateUserNameForm';
+import UpdatePasswordForm from './edit/UpdateUserPasswordForm';
 
 const StyledEdit = styled.div`
   display: flex;

@@ -1,4 +1,4 @@
-import ProfileOverview from '../features/profile/ProfileOverview';
+import ProfileOverview from '../features/profile/overview/ProfileOverview';
 
 function Profile() {
   return (

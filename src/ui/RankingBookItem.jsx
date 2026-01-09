@@ -1,8 +1,6 @@
-import { HiEye, HiBookmarkSquare } from 'react-icons/hi2';
 import styled from 'styled-components';
 import StarRating from './StarRating';
-import { HiFire } from 'react-icons/hi';
-import { timeAgo } from '../utils/timeAgo';
+import { EyeIcon, BookmarkPlusIcon } from 'lucide-react';
 
 const StyledBookItem = styled.li`
   display: flex;
@@ -13,7 +11,7 @@ const StyledBookItem = styled.li`
 const StyledImg = styled.img`
   width: 40px;
   height: 50px;
-  object-fit: cover; /* Ensure image fits nicely */
+  object-fit: cover;
   cursor: pointer;
   &:hover {
     opacity: 0.8;
@@ -71,11 +69,11 @@ export default function RankingBookItem({ book, type, onBookClick }) {
         {type === 'views' && (
           <>
             <StyledStats aria-label={`${views} views`}>
-              <HiEye size={16} />
+              <EyeIcon size={16} />
               <span>{views.toLocaleString()} reads</span>
             </StyledStats>
             <StyledStats aria-label={`${bookmarks} bookmarks`}>
-              <HiBookmarkSquare size={16} />
+              <BookmarkPlusIcon size={16} />
               <span>{bookmarks?.toLocaleString() || 0}</span>
             </StyledStats>
           </>
@@ -85,7 +83,7 @@ export default function RankingBookItem({ book, type, onBookClick }) {
         {type === 'trends' && (
           <>
             <StyledStats aria-label={`${weekly_views} weekly views`}>
-              <HiEye size={16} />
+              <EyeIcon size={16} />
               <span>{weekly_views?.toLocaleString() || 0} reads this week</span>
             </StyledStats>
             <StyledStats aria-label={`${weekly_ratings} weekly ratings`}>
@@ -94,7 +92,7 @@ export default function RankingBookItem({ book, type, onBookClick }) {
                 rating={weekly_ratings || 0}
                 interactive={false}
               />
-              <span>{weekly_ratings?.toLocaleString() || 0} ratings</span>
+              <span>({weekly_ratings?.toLocaleString() || 0}) </span>
             </StyledStats>
           </>
         )}
@@ -103,7 +101,7 @@ export default function RankingBookItem({ book, type, onBookClick }) {
         {type === 'rated' && (
           <>
             <StyledStats aria-label={`${bookmarks} bookmarks`}>
-              <HiBookmarkSquare size={16} />
+              <BookmarkPlusIcon size={16} />
               <span>{bookmarks?.toLocaleString() || 0}</span>
             </StyledStats>
             <StyledStats aria-label={`Rating ${rating}`}>

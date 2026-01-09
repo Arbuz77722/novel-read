@@ -41,8 +41,6 @@ const BottomRow = styled.div`
   }
 `;
 
-const Stats = styled.div``;
-
 function ReviewHeader({ book, reviews }) {
   const { cover_url, title, author } = book;
   const { avgRating } = calculateReviewStats(reviews);
@@ -58,8 +56,6 @@ function ReviewHeader({ book, reviews }) {
         </TopRow>
         <BottomRow>
           <StarRating rating={avgRating} size={25} interactive={false} />
-
-          <Stats></Stats>
         </BottomRow>
       </RightColumn>
     </StyledReviewHeader>

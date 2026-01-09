@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import StyledNavLink from './StyledNavLink';
+import { Edit, InboxIcon, Library, Settings, User2 } from 'lucide-react';
 
 const NavList = styled.ul`
   display: flex;
@@ -14,22 +15,26 @@ const NavItem = styled.li`
 
 function ProfileNav() {
   const navItems = [
-    { to: 'overview', name: 'Overview' },
-    { to: 'edit', name: 'Edit Profile' },
-    { to: 'library', name: 'Library' },
-    { to: 'notifications', name: 'Notifications' },
-    { to: 'settings', name: 'Settings' },
+    { to: 'overview', name: 'Overview', icon: User2 },
+    { to: 'edit', name: 'Edit Profile', icon: Edit },
+    { to: 'library', name: 'Library', icon: Library },
+    { to: 'inbox', name: 'Inbox', icon: InboxIcon },
+    { to: 'settings', name: 'Settings', icon: Settings },
   ];
 
   return (
     <NavList>
-      {navItems.map((navItem) => (
-        <NavItem key={navItem.to}>
-          <StyledNavLink to={navItem.to}>
-            <span>{navItem.name}</span>
-          </StyledNavLink>
-        </NavItem>
-      ))}
+      {navItems.map((navItem) => {
+        const Icon = navItem.icon;
+        return (
+          <NavItem key={navItem.to}>
+            <StyledNavLink to={navItem.to}>
+              <Icon size={20} />
+              <span>{navItem.name}</span>
+            </StyledNavLink>
+          </NavItem>
+        );
+      })}
     </NavList>
   );
 }

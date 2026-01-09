@@ -3,10 +3,10 @@ import { Autoplay, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import styled from 'styled-components';
-import { useBooks } from '../books/useBooks';
-import Spinner from '../../ui/Spinner';
 import { useBookNavigation } from '../../hooks/useBookNavigation';
 import { useBooksByFilter } from '../books/useBooksByFilter';
+import HomeSliderSkeleton from '../../ui/skeletons/HomeSliderSkeleton';
+import { useEffect, useState } from 'react';
 
 const SliderWrapper = styled.div`
   width: 100%;
@@ -153,7 +153,13 @@ const BottomInfo = styled.div`
 function HomeSlider() {
   const { books, isBookLoading } = useBooksByFilter({ limit: 12 });
   const { goToBook } = useBookNavigation();
-  if (isBookLoading) return <Spinner />;
+  const [minLoading, setMinLoading] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => setMinLoading(false), 800); // 800ms min
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isBookLoading || minLoading) return <HomeSliderSkeleton />;
 
   return (
     <SliderWrapper>

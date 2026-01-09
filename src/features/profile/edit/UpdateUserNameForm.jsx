@@ -43,7 +43,6 @@ function UpdateUserNameForm() {
   const [username, setUsername] = useState('');
   const [avatar, setAvatar] = useState(null);
 
-  // 🔑 Sync async profile → state
   useEffect(() => {
     if (profile?.username) setUsername(profile.username);
   }, [profile]);

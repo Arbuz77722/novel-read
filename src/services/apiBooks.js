@@ -371,3 +371,14 @@ export async function addBookViews({ bookId, userId = null }) {
   }
   return data;
 }
+
+export async function getSlugById(bookId) {
+  const { data, error } = await supabase
+    .from('books')
+    .select('title,slug')
+    .eq('id', bookId)
+    .maybeSingle();
+
+  if (error) throw new Error(error.message);
+  return { slug: data.slug, title: data.title ?? null };
+}

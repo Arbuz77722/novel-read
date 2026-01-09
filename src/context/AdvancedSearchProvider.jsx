@@ -5,7 +5,6 @@ const AdvancedSearchContext = createContext();
 export function AdvancedSearchProvider({ children }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
-  // Applied filters (source of truth, always from URL)
   const appliedFilters = {
     types: searchParams.get('types')?.split(',').filter(Boolean) || [],
     languages: searchParams.get('languages')?.split(',').filter(Boolean) || [],

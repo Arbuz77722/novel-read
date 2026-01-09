@@ -4,14 +4,15 @@ import ExpandableText from './ExpandableText';
 import { HiThumbDown, HiThumbUp } from 'react-icons/hi';
 import { useVote } from '../features/reviews/voteOnReview';
 import { useState } from 'react';
+import { displayRole } from '../utils/displayRole';
 
 const StyledReviewCard = styled.div`
   padding: 2.5rem;
   border-radius: 12px;
   background-color: var(--color-grey-100);
   width: 100%;
-  box-sizing: border-box;
   margin-bottom: 2rem;
+  border: 1px solid var(--color-grey-200);
 `;
 
 const UserProfile = styled.div`
@@ -26,11 +27,6 @@ const LeftRow = styled.div`
   align-items: center;
 `;
 
-const RightRow = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
 const Avatar = styled.img`
   height: 5rem;
   width: 5rem;
@@ -41,7 +37,7 @@ const Avatar = styled.img`
 const ReviewUser = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.7rem;
 `;
 
 const UserInfo = styled.div`
@@ -51,27 +47,30 @@ const UserInfo = styled.div`
 `;
 
 const UserName = styled.div`
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   font-weight: 600;
+  color: var(--color-brand-600);
 `;
 
 const UserTag = styled.div`
-  padding: 0.2rem 0.5rem;
-  background-color: var(--color-brand-700);
-  border-radius: 5px;
-  color: white;
+  padding: 0.4rem 0.8rem;
+  background-color: var(--color-grey-200);
+  color: var(--color-brand-500);
+  border-radius: 3px;
   font-size: 1.1rem;
-  font-weight: 500;
+  font-weight: 600;
+  text-transform: uppercase;
 `;
 
 const ReviewDate = styled.div`
-  font-size: 1.3rem;
-  color: var(--color-grey-600);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-grey-500);
 `;
 
 const UserReview = styled.div`
   width: 100%;
-  font-size: 1.4rem;
+  font-size: 1.7;
   margin-top: 2rem;
   line-height: 1.8;
 `;
@@ -84,19 +83,13 @@ const UserReaction = styled.div`
 `;
 
 const ReactionBox = styled.span`
-  padding: 0.5rem 1rem;
+  margin-top: 2rem;
+  padding: 0.3rem 0.7rem;
   background-color: var(--color-grey-200);
   border-radius: 11px;
   display: flex;
   gap: 1rem;
   align-items: center;
-  justify-content: center;
-`;
-const ReactionIcon = styled.span`
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 const IconWrapper = styled.span`
@@ -107,7 +100,6 @@ const IconWrapper = styled.span`
   color: ${({ active }) =>
     active ? 'var(--color-brand-700)' : 'var(--color-grey-700)'};
 `;
-const Counter = styled.span``;
 
 function ReviewCardItem({ review }) {
   const {
@@ -115,14 +107,14 @@ function ReviewCardItem({ review }) {
     upvotes,
     downvotes,
     myVote,
-    profiles: { username, avatar_url },
+    profiles: { username, avatar_url, role },
     rating,
     created_at,
+    review: text,
   } = review;
 
   const voteMutation = useVote();
 
-  // Local optimistic UI values
   const [localVote, setLocalVote] = useState(myVote);
   const [localUp, setLocalUp] = useState(upvotes);
   const [localDown, setLocalDown] = useState(downvotes);
@@ -132,63 +124,53 @@ function ReviewCardItem({ review }) {
 
     if (localVote === 1) setLocalUp((n) => n - 1);
     if (localVote === -1) setLocalDown((n) => n - 1);
-
     if (newVote === 1) setLocalUp((n) => n + 1);
     if (newVote === -1) setLocalDown((n) => n + 1);
 
     setLocalVote(newVote);
-
     voteMutation.mutate({ reviewId: id, vote: newVote });
   };
 
   return (
-    <StyledReviewCard>
+    <StyledReviewCard id={`review-${id}`}>
       <UserProfile>
         <LeftRow>
-          <Avatar
-            src={avatar_url || '/placeholder-avatar.jpg'}
-            alt='Reviewer avatar'
-          />
-
+          <Avatar src={avatar_url || '/placeholder-avatar.jpg'} />
           <ReviewUser>
             <UserInfo>
               <UserName>{username}</UserName>
-              <UserTag>Reader</UserTag>
+              <UserTag>{displayRole(role)}</UserTag>
             </UserInfo>
-
-            <ReviewDate>{new Date(created_at).toLocaleDateString()}</ReviewDate>
+            <ReviewDate>
+              {new Date(created_at).toLocaleDateString('en-US', {
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric',
+              })}
+            </ReviewDate>
           </ReviewUser>
         </LeftRow>
 
-        <RightRow>
-          <StarRating size={22} interactive={false} rating={rating} />
-        </RightRow>
+        <StarRating size={22} interactive={false} rating={rating} />
       </UserProfile>
 
       <UserReview>
-        <ExpandableText text={review.review} charLimit={500} />
+        <ExpandableText text={text} charLimit={500} />
       </UserReview>
 
       <UserReaction>
-        <ReactionBox>
-          <ReactionIcon>
-            <IconWrapper active={localVote === 1} onClick={() => handleVote(1)}>
-              <HiThumbUp size={22} />
-            </IconWrapper>
-          </ReactionIcon>
-          <Counter>{localUp}</Counter>
+        <ReactionBox onClick={() => handleVote(1)}>
+          <IconWrapper active={localVote === 1}>
+            <HiThumbUp size={16} />
+          </IconWrapper>
+          <span>{localUp}</span>
         </ReactionBox>
 
-        <ReactionBox>
-          <ReactionIcon>
-            <IconWrapper
-              active={localVote === -1}
-              onClick={() => handleVote(-1)}
-            >
-              <HiThumbDown size={22} />
-            </IconWrapper>
-          </ReactionIcon>
-          <Counter>{localDown}</Counter>
+        <ReactionBox onClick={() => handleVote(-1)}>
+          <IconWrapper active={localVote === -1}>
+            <HiThumbDown size={16} />
+          </IconWrapper>
+          <span>{localDown}</span>
         </ReactionBox>
       </UserReaction>
     </StyledReviewCard>

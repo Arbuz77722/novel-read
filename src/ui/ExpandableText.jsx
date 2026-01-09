@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 const Text = styled.div`
   line-height: 1.6;
-  font-size: 1.4rem;
 `;
 
 const ToggleButton = styled.span`

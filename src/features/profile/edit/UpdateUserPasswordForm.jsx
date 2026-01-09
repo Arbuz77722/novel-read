@@ -5,6 +5,7 @@ import Input from '../../../ui/Input';
 import useUpdateUser from './useUpdateUser';
 import Button from '../../../ui/Button';
 import styled from 'styled-components';
+import UpdatePasswordFormSkeleton from '../../../ui/skeletons/UpdatePasswordFormSkeleton';
 
 const StyledForm = styled.div``;
 const Title = styled.h1`
@@ -21,6 +22,7 @@ function UpdatePasswordForm() {
     updateUser({ password }, { onSuccess: reset });
   }
 
+  if (isUpdating) return <UpdatePasswordFormSkeleton />;
   return (
     <StyledForm>
       <Title>Update Password</Title>

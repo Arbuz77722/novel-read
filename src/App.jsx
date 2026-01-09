@@ -19,7 +19,6 @@ import ProtectedRoutes from './ui/ProtectedRoutes';
 import Review from './pages/Review';
 import { Toaster } from 'react-hot-toast';
 import ProfileSetting from './features/profile/ProfileSetting';
-import ProfileNotification from './features/profile/ProfileNotification';
 import LibraryHistory from './features/profile/library/LibraryHistory';
 import LibraryUpdates from './features/profile/library/LibraryUpdates';
 import LibrarySectionLayout from './ui/LibrarySectionLayout';
@@ -28,6 +27,7 @@ import Profile from './pages/Profile';
 import ProfileLayout from './ui/ProfileLayout';
 import LibraryStatusLayout from './ui/LibraryStatusLayout';
 import LibraryBooks from './features/profile/library/LibraryBooks';
+import ProfileInbox from './features/profile/ProfileInbox';
 
 function App() {
   const queryClient = new QueryClient({
@@ -75,14 +75,13 @@ function App() {
                 { path: 'overview', element: <Profile /> },
                 { path: 'edit', element: <ProfileEdit /> },
 
-                // ================= LIBRARY =================
                 {
                   path: 'library',
-                  element: <LibrarySectionLayout />, // Main tabs: Library | Updates | History
+                  element: <LibrarySectionLayout />,
                   children: [
                     // ---------- LIBRARY ----------
                     {
-                      element: <LibraryStatusLayout />, // Sub-tabs live here
+                      element: <LibraryStatusLayout />,
                       children: [
                         { index: true, element: <LibraryBooks /> },
                         {
@@ -108,10 +107,9 @@ function App() {
                       ],
                     },
 
-                    // ---------- UPDATES ----------
                     {
                       path: 'updates',
-                      element: <LibraryStatusLayout />, // SAME sub-tabs
+                      element: <LibraryStatusLayout />,
                       children: [
                         { index: true, element: <LibraryUpdates /> },
                         {
@@ -137,16 +135,14 @@ function App() {
                       ],
                     },
 
-                    // ---------- HISTORY ----------
                     {
                       path: 'history',
                       element: <LibraryHistory />,
                     },
                   ],
                 },
-                // =================================================
 
-                { path: 'notifications', element: <ProfileNotification /> },
+                { path: 'inbox', element: <ProfileInbox /> },
                 { path: 'settings', element: <ProfileSetting /> },
               ],
             },

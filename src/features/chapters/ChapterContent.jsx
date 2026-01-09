@@ -7,11 +7,11 @@ import { useChapters } from './useChapters';
 import Spinner from '../../ui/Spinner';
 import styled from 'styled-components';
 import ChapterNavigation from '../../ui/ChapterNavigation';
-import useUpdateLastReadChapter from '../profile/library/useUpdateLastReadChapter';
+import useUpdateLastReadChapter from '../profile/edit/useUpdateLastReadChapter';
 
 const StyledChapterContainer = styled.div`
-  max-width: 900px; /* keeps content readable */
-  margin: 2rem auto; /* center horizontally */
+  max-width: 900px;
+  margin: 2rem auto;
   padding: 2rem;
   background-color: var(--color-grey-100);
   border-radius: 12px 12px 0 0;
@@ -22,7 +22,7 @@ const StyledChapterContainer = styled.div`
 
 const ChapterContentWrapper = styled.div`
   margin-top: 1.5rem;
-  word-break: break-word; /* prevent overflow for long words */
+  word-break: break-word;
 `;
 
 const ChapterText = styled.div`
@@ -33,7 +33,7 @@ const ChapterText = styled.div`
   }
 
   & img {
-    max-width: 100%; /* keeps images inside container */
+    max-width: 100%;
     height: auto;
     display: block;
     margin: 1rem auto;
@@ -88,24 +88,16 @@ function ChapterContent() {
 
     doc.querySelectorAll('strong, hr, p').forEach((el) => {
       const text = el.textContent?.trim();
-
-      // Remove any <strong> that contains "Chapter" (prefix text)
       if (el.tagName === 'STRONG' && text?.toLowerCase().includes('chapter')) {
         el.remove();
       }
-
-      // Remove <p> if it repeats the chapter title
       if (el.tagName === 'P' && text === chapter.title) {
         el.remove();
       }
-
-      // Remove empty elements or <hr>
       if (!text || el.tagName === 'HR') {
         el.remove();
       }
     });
-
-    // Fix spacing between sentences
     doc.querySelectorAll('p').forEach((p) => {
       p.innerHTML = p.innerHTML.replace(/([.?!])(\S)/g, '$1 $2');
     });

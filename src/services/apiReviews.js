@@ -46,8 +46,6 @@ export async function submitReview({
   return data;
 }
 
-// src/api/apiReviews.js
-
 export async function getUserReviews(bookId, filter = 'newest') {
   let query = supabase
     .from('book_reviews')
@@ -59,7 +57,7 @@ export async function getUserReviews(bookId, filter = 'newest') {
       created_at,
       profiles:profiles!book_reviews_user_id_fkey (
         username,
-        avatar_url
+        avatar_url,role
       ),
       votes:review_votes!review_id (
         vote,
@@ -114,6 +112,7 @@ export async function voteOnReview(reviewId, vote) {
       .eq('user_id', user.id)
       .eq('review_id', reviewId);
     if (error) throw error;
+    return;
   } else {
     const { error } = await supabase
       .from('review_votes')
@@ -121,6 +120,9 @@ export async function voteOnReview(reviewId, vote) {
         { user_id: user.id, review_id: reviewId, vote },
         { onConflict: 'user_id,review_id' }
       );
-    if (error) throw error;
+    if (error) {
+      console.error('Upsert error:', error);
+      throw error;
+    }
   }
 }

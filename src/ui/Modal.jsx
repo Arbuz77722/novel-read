@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 const Backdrop = styled.div`
@@ -6,20 +5,17 @@ const Backdrop = styled.div`
   inset: 0;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   z-index: 2000;
 `;
 
 const Content = styled.div`
-  background-color: var(--color-grey-0);
+  background: var(--color-grey-0);
   padding: 2.5rem;
   border-radius: 12px;
   width: 90%;
   max-width: 600px;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
 `;
 
 const Header = styled.div`
@@ -31,11 +27,11 @@ const Header = styled.div`
 const CloseButton = styled.button`
   background: none;
   border: none;
-  font-size: 1.8rem;
+  font-size: 2rem;
   cursor: pointer;
 `;
 
-export default function Modal({ title, onClose, children }) {
+function Modal({ title, onClose, children }) {
   return (
     <Backdrop onClick={onClose}>
       <Content onClick={(e) => e.stopPropagation()}>
@@ -48,3 +44,5 @@ export default function Modal({ title, onClose, children }) {
     </Backdrop>
   );
 }
+
+export default Modal;

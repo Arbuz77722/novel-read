@@ -6,6 +6,7 @@ import { useBookNavigation } from '../../hooks/useBookNavigation';
 import ButtonIcon from '../../ui/ButtonIcon';
 import { MiniSpinner } from '../../ui/MiniSpinner';
 import useSearchBooks from '../books/useSearchBooks';
+import { SearchIcon } from 'lucide-react';
 
 const Container = styled.div`
   position: relative;
@@ -179,7 +180,7 @@ export default function SearchBox() {
           pointerEvents: open ? 'none' : 'auto',
         }}
       >
-        <HiOutlineSearch size={20} />
+        <SearchIcon size={20} />
       </ButtonIcon>
 
       {open && (

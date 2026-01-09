@@ -5,18 +5,31 @@ import LoginNavigation from './LoginNavigation';
 import { max_width } from '../utils/constants';
 import LoggedInUser from './LoggedInUser';
 import { useUser } from '../features/authentication/useUser';
+import UserSkeleton from './skeletons/UserSkeleton';
+import UserDropdown from './UserDropdown';
 
 const StyledHeader = styled.header`
   max-width: ${max_width};
   margin: 0 auto;
-  padding: 2rem 4.8rem;
+  padding: 1.6rem;
+
+  position: relative;
+`;
+
+const Row = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const TopRow = styled.div`
+  margin-left: auto;
+`;
+const BottomRow = styled.div`
   display: flex;
   gap: 2.4rem;
   align-items: center;
   justify-content: space-between;
-  position: relative;
 `;
-
 const LeftGroup = styled.div`
   display: flex;
   align-items: center;
@@ -34,25 +47,35 @@ const FullWidthBorder = styled.div`
   z-index: 0;
 `;
 
-const FlexColumn = styled.div`
+const RightGroup = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 `;
 
 function Header() {
-  const { user, isAuthenticated } = useUser();
+  const { user, isAuthenticated, isPending } = useUser();
 
   return (
     <StyledHeader>
-      <LeftGroup>
-        <Logo />
-        <HeaderMenu />
-      </LeftGroup>
-      <FlexColumn>
-        {isAuthenticated && user ? <LoggedInUser /> : null}
-        <LoginNavigation isAuthenticated={isAuthenticated} />
-      </FlexColumn>
+      <Row>
+        <TopRow>
+          {isPending ? (
+            <UserSkeleton />
+          ) : isAuthenticated && user ? (
+            <UserDropdown />
+          ) : null}
+        </TopRow>
+        <BottomRow>
+          <LeftGroup>
+            <Logo />
+            <HeaderMenu />
+          </LeftGroup>
+          <RightGroup>
+            <LoginNavigation isAuthenticated={isAuthenticated} />
+          </RightGroup>
+        </BottomRow>
+      </Row>
       <FullWidthBorder />
     </StyledHeader>
   );

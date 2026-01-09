@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import DarkModeToggle from './DarkModeToggle';
 import StyledNavLink from './StyledNavLink';
-import Logout from '../features/authentication/Logout';
+import { LibraryIcon, LogInIcon } from 'lucide-react';
+
+import NotificationDropdown from '../features/notifications/NotificationDropdown';
 
 const StyledLoginNav = styled.ul`
   display: flex;
@@ -19,24 +21,25 @@ function LoginNavigation({ isAuthenticated }) {
       {isAuthenticated ? (
         <>
           <li>
-            <StyledNavLink to='/profile'>Profile</StyledNavLink>
-          </li>
-          {/* <li>
-            <StyledNavLink to='/profile/library'>Library</StyledNavLink>
-          </li> */}
-          <li>
-            <StyledNavLink>
-              <Logout />
+            <StyledNavLink to='/profile/library'>
+              <LibraryIcon size={20} />
+              Library
             </StyledNavLink>
+          </li>
+          <li>
+            <NotificationDropdown />
           </li>
         </>
       ) : (
         <>
           <li>
-            <StyledNavLink to='/signup'>Sign up</StyledNavLink>
+            <StyledNavLink to='/signup'> Sign up</StyledNavLink>
           </li>
           <li>
-            <StyledNavLink to='/login'>Login</StyledNavLink>
+            <StyledNavLink to='/login'>
+              <LogInIcon size={20} />
+              Login
+            </StyledNavLink>
           </li>
         </>
       )}

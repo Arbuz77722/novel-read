@@ -6,6 +6,7 @@ import useLibraryStatus from '../../hooks/useLibraryStatus';
 import { useContinueReading } from '../../hooks/useContinueReading';
 import { useLibraryEntry } from '../profile/library/useLibraryEntry';
 import { useUser } from '../authentication/useUser';
+import BookHeaderSkeleton from '../../ui/skeletons/BookHeaderSkeleton';
 
 const BookHeaderContainer = styled.div`
   padding: 2.5rem;
@@ -174,7 +175,7 @@ function BookHeader({ book }) {
     slug,
   } = book;
 
-  const { bookGenre } = useBookGenre({ bookId });
+  const { bookGenre, isPending } = useBookGenre({ bookId });
   const { libraryStatus, updateStatus } = useLibraryStatus(bookId);
   const { continueReading } = useContinueReading();
   const { libraryEntry } = useLibraryEntry(book.id);
@@ -185,6 +186,8 @@ function BookHeader({ book }) {
     firstChapterId: first_chapter_id,
     lastReadChapterId: libraryEntry?.last_read_chapter_id ?? null,
   };
+
+  if (isPending) return <BookHeaderSkeleton />;
 
   return (
     <BookHeaderContainer>

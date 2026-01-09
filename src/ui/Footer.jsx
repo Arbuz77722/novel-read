@@ -59,37 +59,34 @@ function Footer() {
     <div style={{ position: 'relative' }}>
       <FullWidthBorder />
       <StyledFooter>
-        {/* Column 1: Logo + rights */}
         <Column>
           <Logo />
           <small>© 2025 Isekai Haven. All rights reserved.</small>
         </Column>
 
-        {/* Column 2: Navigation */}
         <Column>
           <FooterLink href='/ranking'>Ranking</FooterLink>
           <FooterLink href='/latest-chapters'>Latest Chapters</FooterLink>
           <FooterLink href='/latest-novels'>Latest Novels</FooterLink>
-          <FooterLink href='/advanced-search'>Advanced Search</FooterLink>
+          <FooterLink href='/search/advanced-search'>
+            Advanced Search
+          </FooterLink>
         </Column>
 
-        {/* Column 3: Genres */}
         <Column>
-          <FooterLink href='/genre/romance'>Romance</FooterLink>
-          <FooterLink href='/genre/harem'>Harem</FooterLink>
-          <FooterLink href='/genre/action'>Action</FooterLink>
-          <FooterLink href='/genre/fantasy'>Fantasy</FooterLink>
+          <FooterLink href='/browse?genres=18&page=1'>Romance</FooterLink>
+          <FooterLink href='/browse?genres=9&page=1'>Harem</FooterLink>
+          <FooterLink href='/browse?genres=1&page=1'>Action</FooterLink>
+          <FooterLink href='/browse?genres=7&page=1'>Fantasy</FooterLink>
         </Column>
 
-        {/* Column 4: More Genres */}
         <Column>
-          <FooterLink href='/genre/supernatural'>Supernatural</FooterLink>
-          <FooterLink href='/genre/slice-of-life'>Slice of Life</FooterLink>
-          <FooterLink href='/genre/martial-arts'>Martial Arts</FooterLink>
-          <FooterLink href='/genre/sci-fi'>Sci-fi</FooterLink>
+          <FooterLink href='/browse?genres=29&page=1'>Supernatural</FooterLink>
+          <FooterLink href='/browse?genres=26&page=1'>Slice of Life</FooterLink>
+          <FooterLink href='/browse?genres=13&page=1'>Martial Arts</FooterLink>
+          <FooterLink href='/browse?genres=20&page='>Sci-fi</FooterLink>
         </Column>
 
-        {/* Column 5: Legal */}
         <Column>
           <FooterLink href='/privacy-policy'>Privacy Policy</FooterLink>
           <FooterLink href='/terms-of-service'>Terms of Service</FooterLink>

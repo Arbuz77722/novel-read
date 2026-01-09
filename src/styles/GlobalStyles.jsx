@@ -43,8 +43,8 @@ const GlobalStyles = createGlobalStyle`:root {
 
 &, &.light-mode{
     /* Grey */
-  --color-grey-0: "#FAFAF7";
-  --color-grey-50: #f9fafb;
+  --color-grey-0: #FAFAF7;
+  --color-grey-50: #dee7ef;
   --color-grey-100: #f3f4f6;
   --color-grey-200: #e5e7eb;
   --color-grey-300: #d1d5db;
@@ -53,7 +53,7 @@ const GlobalStyles = createGlobalStyle`:root {
   --color-grey-600: #4b5563;
   --color-grey-700: #374151;
   --color-grey-800: #1f2937;
-  --color-grey-900: #111827;
+  --color-grey-900: #405073;
 
   --color-blue-100: #e0f2fe;
   --color-blue-700: #0369a1;
@@ -69,6 +69,15 @@ const GlobalStyles = createGlobalStyle`:root {
   --color-red-100: #fee2e2;
   --color-red-700: #b91c1c;
   --color-red-800: #991b1b;
+
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-200: #c7d2fe;
+  --color-brand-500: #6366f1;
+  --color-brand-600: #4f46e5;
+  --color-brand-700: #4338ca;
+  --color-brand-800: #3730a3;
+  --color-brand-900: #7570f5;
 
   --backdrop-color: rgba(255, 255, 255, 0.1);
 
@@ -109,6 +118,15 @@ const GlobalStyles = createGlobalStyle`:root {
 --color-red-100: #fee2e2;
 --color-red-700: #b91c1c;
 --color-red-800: #991b1b;
+
+--color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-200: #c7d2fe;
+  --color-brand-500: #6366f1;
+  --color-brand-600: #4f46e5;
+  --color-brand-700: #4338ca;
+  --color-brand-800: #3730a3;
+  --color-brand-900: #312e81;
 
 --backdrop-color: rgba(0, 0, 0, 0.3);
 
@@ -163,6 +181,8 @@ body {
   min-height: 100vh;
   line-height: 1.5;
   font-size: 1.6rem;
+   
+
 }
 
 input,
@@ -228,7 +248,20 @@ img {
 }
 
 
+.react-loading-skeleton {
+  --skeleton-base: #e2e8f0;
+  --skeleton-highlight: #f1f5f9;
+  background-color: var(--skeleton-base);
+  background-image: linear-gradient(90deg, var(--skeleton-base), var(--skeleton-highlight), var(--skeleton-base));
+}
 
+
+.dark-mode .react-loading-skeleton {
+  --skeleton-base: var(--color-grey-100); 
+  --skeleton-highlight: var(--color-grey-200); 
+  background-color: var(--skeleton-base);
+  background-image: linear-gradient(90deg, var(--skeleton-base), var(--skeleton-highlight), var(--skeleton-base));
+}
 
 `;
 

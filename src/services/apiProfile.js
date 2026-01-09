@@ -71,6 +71,7 @@ export async function getLibrary() {
         avg_rating,
         rating_count,
         latest_chapter_id,
+        latest_chapter_at,
         first_chapter_id
       ),
       chapters:chapters(number)
@@ -106,15 +107,14 @@ export async function updateLastReadChapter({ bookId, chapterId }) {
 
   if (fetchError || !libraryEntry) return;
 
-  const { error: updateError } = await supabase.from('libraries').update(
-    {
-      book_id: bookId,
-      user_id: user.id,
+  const { error: updateError } = await supabase
+    .from('libraries')
+    .update({
       last_read_chapter_id: chapterId,
       updated_at: new Date(),
-    },
-    { onConflict: 'user_id,book_id' }
-  );
+    })
+    .eq('user_id', user.id)
+    .eq('book_id', bookId);
   if (updateError) {
     console.error('Failed to update reading progress:', updateError);
     throw new Error(updateError.message);

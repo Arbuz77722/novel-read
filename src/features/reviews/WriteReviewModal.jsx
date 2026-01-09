@@ -45,7 +45,7 @@ const ReviewTextArea = styled.textarea`
   font-size: 1.5rem;
   line-height: 1.6;
   resize: vertical;
-  color: blue;
+  color: var(--color-grey-200);
 `;
 
 const CheckboxWrapper = styled.div`

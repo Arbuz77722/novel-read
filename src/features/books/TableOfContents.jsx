@@ -5,12 +5,12 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import styled from 'styled-components';
 import BookTOCItem from './BookTOCItem';
-import { useQueryClient } from '@tanstack/react-query';
+import TableOfContentsSkeleton from '../../ui/skeletons/TableOfContentsSkeleton';
 
 const TOCContainer = styled.div`
   padding: 2rem;
   background-color: var(--color-grey-100);
-  border-radius: 0 0 12px 12px;
+  border-radius: 12px;
 `;
 
 const TOCGrid = styled.ul`
@@ -35,8 +35,7 @@ function TableOfContents({ bookId, slug }) {
   const page = searchParams.get('page') ? +searchParams.get('page') : 1;
   const navigate = useNavigate();
   const { chapters, isChaptersLoading, count } = useChapters(bookId, page);
-  if (isChaptersLoading) return <Spinner />;
-  if (!chapters.length) return <p>No chapters found.</p>;
+  if (isChaptersLoading) return <TableOfContentsSkeleton />;
 
   return (
     <TOCContainer>

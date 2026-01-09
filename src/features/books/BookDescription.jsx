@@ -1,6 +1,6 @@
 import BookHeader from './BookHeader';
 import TableOfContents from './TableOfContents';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useBook } from './useBook';
 import Spinner from '../../ui/Spinner';
 import styled from 'styled-components';
@@ -8,6 +8,7 @@ import useAddBookViews from './useAddBookViews';
 import { useEffect } from 'react';
 import { useUser } from '../authentication/useUser';
 import ReviewsSection from '../reviews/ReviewsSection';
+import CommentSection from '../comments/CommentSection';
 
 const StyledDiv = styled.div`
   background-color: var(--color-grey-0);
@@ -21,7 +22,7 @@ function BookDescription() {
   const { user } = useUser();
   const { book, isBookLoading } = useBook(slug);
   const { addViews } = useAddBookViews();
-
+  const location = useLocation();
   useEffect(() => {
     if (!book?.id || !addViews) return;
     addViews({ bookId: book.id, userId: user?.id || null });
@@ -35,6 +36,11 @@ function BookDescription() {
       <BookHeader book={book} />
       <ReviewsSection book={book} />
       <TableOfContents bookId={book.id} slug={slug} />
+      <CommentSection
+        targetId={book.id}
+        targetType='book'
+        expandCommentId={location.state?.expandCommentId}
+      />
     </StyledDiv>
   );
 }

@@ -4,7 +4,11 @@ import LibraryBookSection from '../../../ui/LibraryBookSection';
 function LibraryBooks({ status }) {
   return (
     <div>
-      <LibraryBookSection ItemComponent={LibraryBookCard} status={status} />
+      <LibraryBookSection
+        ItemComponent={LibraryBookCard}
+        status={status}
+        tab={'library'}
+      />
     </div>
   );
 }

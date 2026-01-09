@@ -7,18 +7,14 @@ import BrowseBook from '../features/browse/BrowseBook';
 import ResetButton from './FilterReset';
 import Spinner from './Spinner';
 import BookFooter from '../features/books/BookFooter';
-import styled from 'styled-components';
 
 function BrowseSections() {
-  const { isGenreLoading } = useGenres();
-  const { isBookLoading } = useBooks();
   const { hasActiveFilters } = useBrowseParams();
 
-  if (isGenreLoading || isBookLoading) return <Spinner />;
   return (
     <div>
       <Genre />
-      {hasActiveFilters && <ResetButton position top={10.5} right={24} />}
+      {hasActiveFilters && <ResetButton position top={15} right={24} />}
       <BrowseFilter />
       <BrowseBook />
       <BookFooter />

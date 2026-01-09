@@ -4,8 +4,6 @@ import NewOngoingReleases from './NewOngoingReleases';
 import Rankings from './Rankings';
 import CompletedBooks from './CompletedBooks';
 import RecentlyAddedChapters from './RecentlyAddedChapters';
-import Spinner from '../../ui/Spinner';
-import { useBooks } from '../books/useBooks';
 
 const StyledHomeSections = styled.div`
   margin-top: 2rem;
@@ -16,9 +14,6 @@ const StyledHomeSections = styled.div`
 `;
 
 function HomeSections() {
-  const { books, isBookLoading } = useBooks();
-  if (isBookLoading) return <Spinner />;
-  if (!books || books.length === 0) return <p>No books found</p>;
   return (
     <StyledHomeSections>
       <HomeSlider />

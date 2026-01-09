@@ -3,13 +3,14 @@ import { useBooks } from './useBooks';
 import Spinner from '../../ui/Spinner';
 import Empty from '../../ui/Empty';
 import styled from 'styled-components';
+import BookFooterSkeleton from '../../ui/skeletons/BookFooter';
 
 const MarginBottom = styled.div`
   margin-bottom: 2rem;
 `;
 function BookFooter() {
   const { isBookLoading, count } = useBooks();
-  if (isBookLoading) return <Spinner />;
+  if (isBookLoading) return <BookFooterSkeleton />;
 
   return (
     <MarginBottom>
