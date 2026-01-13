@@ -72,7 +72,7 @@ const Column = styled.div`
   }
 `;
 
-const FooterLink = styled(Link)`
+const FooterLinkStyled = styled(Link)`
   text-decoration: none;
   color: var(--color-grey-700);
   transition: color 0.2s;
@@ -81,6 +81,18 @@ const FooterLink = styled(Link)`
     color: var(--color-brand-600);
   }
 `;
+
+function FooterLink({ to, children }) {
+  const handleClick = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  };
+
+  return (
+    <FooterLinkStyled to={to} onClick={handleClick}>
+      {children}
+    </FooterLinkStyled>
+  );
+}
 
 function Footer() {
   return (
@@ -114,8 +126,7 @@ function Footer() {
             <FooterLink to='/browse?genres=29&page=1'>Supernatural</FooterLink>
             <FooterLink to='/browse?genres=26&page=1'>Slice of Life</FooterLink>
             <FooterLink to='/browse?genres=13&page=1'>Martial Arts</FooterLink>
-            <FooterLink to='/browse?genres=20&page=1'>Sci-fi</FooterLink>{' '}
-            {/* fixed typo */}
+            <FooterLink to='/browse?genres=20&page=1'>Sci-fi</FooterLink>
           </Column>
 
           <Column>
