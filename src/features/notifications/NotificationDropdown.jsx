@@ -180,7 +180,7 @@ function NotificationDropdown() {
           </ListContainer>
 
           <Footer>
-            <ViewMoreLink to='/profile/inbox' onClick={handleNavigation}>
+            <ViewMoreLink as='button' onClick={handleNavigation}>
               View all notifications
             </ViewMoreLink>
           </Footer>
