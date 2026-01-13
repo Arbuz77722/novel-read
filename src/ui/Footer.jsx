@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { max_width } from '../utils/constants';
 import Logo from './Logo';
+import { Link } from 'react-router-dom'; // ✅ Import Link from React Router
 
 const FooterWrapper = styled.footer`
   width: 100%;
@@ -71,7 +72,8 @@ const Column = styled.div`
   }
 `;
 
-const FooterLink = styled.a`
+const FooterLink = styled(Link)`
+  // ✅ Use Link instead of <a>
   text-decoration: none;
   color: var(--color-grey-700);
   transition: color 0.2s;
@@ -94,39 +96,34 @@ function Footer() {
           </Column>
 
           <Column>
-            <FooterLink href='/ranking'>Ranking</FooterLink>
-            <FooterLink href='/latest-chapters'>Latest Chapters</FooterLink>
-            <FooterLink href='/latest-novels'>Latest Novels</FooterLink>
-            <FooterLink href='/search/advanced-search'>
+            <FooterLink to='/ranking'>Ranking</FooterLink>
+            <FooterLink to='/latest-chapters'>Latest Chapters</FooterLink>
+            <FooterLink to='/latest-novels'>Latest Novels</FooterLink>
+            <FooterLink to='/search/advanced-search'>
               Advanced Search
             </FooterLink>
           </Column>
 
           <Column>
-            <FooterLink href='/browse?genres=18&page=1'>Romance</FooterLink>
-            <FooterLink href='/browse?genres=9&page=1'>Harem</FooterLink>
-            <FooterLink href='/browse?genres=1&page=1'>Action</FooterLink>
-            <FooterLink href='/browse?genres=7&page=1'>Fantasy</FooterLink>
+            <FooterLink to='/browse?genres=18&page=1'>Romance</FooterLink>
+            <FooterLink to='/browse?genres=9&page=1'>Harem</FooterLink>
+            <FooterLink to='/browse?genres=1&page=1'>Action</FooterLink>
+            <FooterLink to='/browse?genres=7&page=1'>Fantasy</FooterLink>
           </Column>
 
           <Column>
-            <FooterLink href='/browse?genres=29&page=1'>
-              Supernatural
-            </FooterLink>
-            <FooterLink href='/browse?genres=26&page=1'>
-              Slice of Life
-            </FooterLink>
-            <FooterLink href='/browse?genres=13&page=1'>
-              Martial Arts
-            </FooterLink>
-            <FooterLink href='/browse?genres=20&page='>Sci-fi</FooterLink>
+            <FooterLink to='/browse?genres=29&page=1'>Supernatural</FooterLink>
+            <FooterLink to='/browse?genres=26&page=1'>Slice of Life</FooterLink>
+            <FooterLink to='/browse?genres=13&page=1'>Martial Arts</FooterLink>
+            <FooterLink to='/browse?genres=20&page=1'>Sci-fi</FooterLink>{' '}
+            {/* fixed typo */}
           </Column>
 
           <Column>
-            <FooterLink href='/privacy-policy'>Privacy Policy</FooterLink>
-            <FooterLink href='/terms-of-service'>Terms of Service</FooterLink>
-            <FooterLink href='/dmca'>DMCA Notices</FooterLink>
-            <FooterLink href='/contact'>Contact Us</FooterLink>
+            <FooterLink to='/privacy-policy'>Privacy Policy</FooterLink>
+            <FooterLink to='/terms-of-service'>Terms of Service</FooterLink>
+            <FooterLink to='/dmca'>DMCA Notices</FooterLink>
+            <FooterLink to='/contact'>Contact Us</FooterLink>
           </Column>
         </FooterGrid>
       </FooterInner>
