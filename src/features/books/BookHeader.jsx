@@ -43,20 +43,6 @@ const BookCover = styled.img`
   box-shadow: var(--shadow-md);
 `;
 
-const RatingContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.6rem;
-  margin-top: 0.8rem;
-
-  span {
-    font-weight: 600;
-    color: var(--color-brand-600);
-    font-size: 1.5rem;
-  }
-`;
-
 const MetadataList = styled.div`
   display: flex;
   flex-direction: column;

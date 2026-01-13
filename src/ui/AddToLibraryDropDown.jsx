@@ -49,11 +49,7 @@ const StyledOption = styled.option`
   font-weight: 500;
 `;
 
-function AddToLibraryDropDown({
-  value,
-  onChange,
-  variant = 'full', // 👈 default
-}) {
+function AddToLibraryDropDown({ value, onChange, variant = 'full' }) {
   return (
     <StyledSelect value={value ?? ''} onChange={onChange} variant={variant}>
       <StyledOption value='' disabled hidden>

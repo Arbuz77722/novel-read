@@ -1,9 +1,7 @@
 import { BellIcon } from 'lucide-react';
-
 import styled from 'styled-components';
 import { useUnreadNotificationCount } from '../features/notifications/useUnreadNotificationCount';
 import SpinnerMini from './SpinnerMini';
-
 import { useNotificationSound } from '../hooks/useNotificationSound';
 import { useNotificationSettings } from '../context/NotificationSettingsContext';
 

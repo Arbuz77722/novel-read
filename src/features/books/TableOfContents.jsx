@@ -1,8 +1,6 @@
 import { useChapters } from '../chapters/useChapters';
-import Spinner from '../../ui/Spinner';
 import Pagination from '../../ui/Pagination';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-
 import styled from 'styled-components';
 import BookTOCItem from './BookTOCItem';
 import TableOfContentsSkeleton from '../../ui/skeletons/TableOfContentsSkeleton';

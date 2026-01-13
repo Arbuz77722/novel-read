@@ -29,10 +29,9 @@ function NewOngoingReleases() {
       ItemComponent={BookCard}
       heading='New Ongoing Releases'
       to='/browse'
-      display='flex'
-      justify='space-between'
       books={ongoingBooks}
       onBookClick={goToBook}
+      variant='ongoing'
     />
   );
 }

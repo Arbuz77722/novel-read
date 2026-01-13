@@ -1,6 +1,5 @@
 import ProfileInfo from '../../../ui/ProfileInfo';
 import Spinner from '../../../ui/Spinner';
-
 import UserStats from '../../../ui/UserStats';
 import { useUser } from '../../authentication/useUser';
 import useProfile from '../useProfile';

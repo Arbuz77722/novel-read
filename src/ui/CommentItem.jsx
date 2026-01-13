@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-
 import CommentCard from '../features/comments/CommentCard';
 import useReplies from '../features/comments/useReplies';
 import ReplyInput from '../features/comments/ReplyInput';
@@ -31,10 +30,9 @@ const ToggleReplies = styled.button`
   &:focus-visible {
     outline: 2px solid var(--color-brand-600);
     outline-offset: 2px;
-    border-radius: 4px; /* Optional: makes it look nicer */
+    border-radius: 4px;
   }
 
-  /* Hide outline when focused via mouse click */
   &:focus:not(:focus-visible) {
     outline: none;
   }

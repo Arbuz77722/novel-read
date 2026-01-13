@@ -59,7 +59,7 @@ export default function Pagination({
   const goTo = (page) => {
     const params = new URLSearchParams(searchParams);
     params.set('page', page);
-    setSearchParams(params, { replace: true }); // updates URL without full reload
+    setSearchParams(params, { replace: true });
   };
 
   const buttons = [];

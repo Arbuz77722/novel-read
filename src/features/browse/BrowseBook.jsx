@@ -1,8 +1,6 @@
 import { useBooks } from '../books/useBooks';
 import BookSection from '../../ui/BookSection';
 import { useBookNavigation } from '../../hooks/useBookNavigation';
-import Spinner from '../../ui/Spinner';
-import NoBooksFound from '../../ui/NoBooksFound';
 import { BookCard } from '../../ui/BookCard';
 import BookCardSkeleton from '../../ui/skeletons/BookCardSkeleton';
 

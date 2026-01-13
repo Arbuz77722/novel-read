@@ -1,19 +1,28 @@
 import styled from 'styled-components';
 import useGetLibraryBooks from '../features/profile/library/useGetLibraryBooks';
-import Spinner from './Spinner';
 import { useContinueReading } from '../hooks/useContinueReading';
 import LibraryBookSectionSkeleton from './skeletons/LibraryBookSectionSkeleton';
 
 const StyledBookSection = styled.ul`
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 2.4rem;
+  grid-template-columns: 1fr;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 `;
 
 function LibraryBookSection({ ItemComponent, status, tab }) {
   const { library, isPending } = useGetLibraryBooks();
   const { continueReading } = useContinueReading();
-
   if (isPending) return <LibraryBookSectionSkeleton />;
 
   const libraryBooks = library.map((data) => ({
@@ -23,8 +32,6 @@ function LibraryBookSection({ ItemComponent, status, tab }) {
     lastReadChapterId: data.last_read_chapter_id,
     lastUpdated: data.updated_at,
   }));
-
-  console.log(libraryBooks);
 
   function getBooksForTab({ libraryBooks, status, tab }) {
     if (tab === 'library') {
@@ -54,12 +61,23 @@ function LibraryBookSection({ ItemComponent, status, tab }) {
 
   const filteredBooks = getBooksForTab({ libraryBooks, status, tab });
 
-  console.log(filteredBooks);
   return (
     <StyledBookSection>
-      {filteredBooks.map((book) => (
-        <ItemComponent key={book.id} book={book} onContinue={continueReading} />
-      ))}
+      {filteredBooks.map((book) => {
+        const readingContext = {
+          slug: book.slug,
+          firstChapterId: book.first_chapter_id,
+          lastReadChapterId: book.lastReadChapterId ?? null,
+        };
+
+        return (
+          <ItemComponent
+            key={book.id}
+            book={book}
+            onContinue={() => continueReading(readingContext)}
+          />
+        );
+      })}
     </StyledBookSection>
   );
 }

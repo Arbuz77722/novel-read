@@ -9,22 +9,18 @@ const StyledUserStats = styled.section`
 
 const StatsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
-  gap: 2.5rem;
+  gap: 2.4rem;
   margin-top: 3rem;
+  grid-template-columns: 1fr;
 `;
 
 const StatCard = styled.div`
+  min-width: 0;
   background-color: var(--color-grey-0);
   border-radius: 12px;
-  padding: 3rem 2.5rem;
+  padding: clamp(2rem, 5vw, 3rem);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   text-align: center;
-  transition: transform 0.3s ease;
-
-  &:hover {
-    transform: translateY(-8px);
-  }
 `;
 
 const FullWidthStatCard = styled(StatCard)`
@@ -40,12 +36,32 @@ const CardTitle = styled.h3`
 
 const NumbersGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  gap: 1.6rem;
+  grid-template-columns: 1fr;
+
+  @media (min-width: 360px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
 
-const LibraryGrid = styled(NumbersGrid)`
-  grid-template-columns: repeat(6, 1fr);
+const LibraryGrid = styled.div`
+  display: grid;
+  gap: 1.6rem;
+  min-width: 0;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  @media (min-width: 400px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(6, 1fr);
+  }
 `;
 
 const StatItem = styled.div`
@@ -59,13 +75,13 @@ const Label = styled.span`
   color: var(--color-grey-600);
   font-weight: 500;
 `;
-
 const Value = styled.span`
-  font-size: 3rem;
+  font-size: clamp(2rem, 6vw, 3rem);
   font-weight: 700;
   color: var(--color-brand-800);
+  line-height: 1.1;
+  white-space: nowrap;
 `;
-
 function UserStats({ stats }) {
   return (
     <StyledUserStats>

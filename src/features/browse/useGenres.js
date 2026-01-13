@@ -3,7 +3,7 @@ import { getGenres } from '../../services/apiBooks';
 
 export function useGenres() {
   const {
-    data: genres = [], // Default to empty array
+    data: genres = [],
     isPending: isGenreLoading,
     error,
   } = useQuery({

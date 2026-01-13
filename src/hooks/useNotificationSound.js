@@ -5,7 +5,6 @@ export function useNotificationSound(count, soundEnabled) {
   const prevCountRef = useRef(count);
   const mountedRef = useRef(false);
 
-  // init audio once
   useEffect(() => {
     audioRef.current = new Audio('/notification.wav');
     audioRef.current.volume = 0.6;

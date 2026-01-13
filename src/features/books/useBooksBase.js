@@ -21,7 +21,7 @@ export default function useBooksBase(params = {}, options = {}) {
     ratingMin,
     ratingMax,
     ranking,
-    limit, // ✅ include limit
+    limit,
   } = params;
 
   const { data, isPending: isBookLoading } = useQuery({
@@ -43,7 +43,7 @@ export default function useBooksBase(params = {}, options = {}) {
         ratingMin,
         ratingMax,
         ranking,
-        limit, // ✅ include in queryKey
+        limit,
       },
     ],
     queryFn: () =>
@@ -63,7 +63,7 @@ export default function useBooksBase(params = {}, options = {}) {
         ratingMin,
         ratingMax,
         ranking,
-        limit, // ✅ pass to fetcher
+        limit,
       }),
     ...options,
   });
@@ -72,7 +72,6 @@ export default function useBooksBase(params = {}, options = {}) {
   const count = data?.count ?? 0;
   const pageCount = Math.ceil(count / PAGE_SIZE);
 
-  // Prefetch next and previous pages (only for normal browse, not ranking sections)
   if (!limit && page < pageCount) {
     queryClient.prefetchQuery({
       queryKey: [

@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import DarkModeToggle from './DarkModeToggle';
 import StyledNavLink from './StyledNavLink';
 import { LibraryIcon, LogInIcon } from 'lucide-react';
-
 import NotificationDropdown from '../features/notifications/NotificationDropdown';
 
 const StyledLoginNav = styled.ul`

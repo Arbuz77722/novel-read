@@ -5,13 +5,11 @@ const Form = styled.form`
     type === 'regular' &&
     css`
       padding: 2.4rem 4rem;
-
-      /* Box */
       padding: 2.4rem 4rem;
       background-color: var(--color-grey-0);
       display: grid;
-      gap: 1.6rem; // spacing between rows
-      width: 100%; // allow full width of parent
+      gap: 1.6rem;
+      width: 100%;
     `}
 
   ${({ type = 'regular' }) =>

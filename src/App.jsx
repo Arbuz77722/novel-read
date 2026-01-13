@@ -79,7 +79,6 @@ function App() {
                   path: 'library',
                   element: <LibrarySectionLayout />,
                   children: [
-                    // ---------- LIBRARY ----------
                     {
                       element: <LibraryStatusLayout />,
                       children: [

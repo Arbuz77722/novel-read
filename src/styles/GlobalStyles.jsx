@@ -34,7 +34,6 @@ const GlobalStyles = createGlobalStyle`:root {
     background: transparent;
   }
 
-  /* Firefox */
   * {
     scrollbar-width: thin;
     scrollbar-color: var(--color-grey-0) transparent;
@@ -42,7 +41,6 @@ const GlobalStyles = createGlobalStyle`:root {
 
 
 &, &.light-mode{
-    /* Grey */
   --color-grey-0: #FAFAF7;
   --color-grey-50: #dee7ef;
   --color-grey-100: #f3f4f6;
@@ -140,7 +138,6 @@ const GlobalStyles = createGlobalStyle`:root {
   }
 
 
-    /* Indigo */
   --color-brand-50: #eef2ff;
   --color-brand-100: #e0e7ff;
   --color-brand-200: #c7d2fe;
@@ -166,7 +163,6 @@ const GlobalStyles = createGlobalStyle`:root {
   padding: 0;
   margin: 0;
 
-  /* Creating animations for dark mode */
   transition: background-color 0.3s, border 0.3s;
 }
 
@@ -178,9 +174,11 @@ body {
   font-family: "Poppins", sans-serif;
   color: var(--color-grey-700);
   transition: color 0.3s, background-color 0.3s;
+  background-color: var(--color-grey-0);
   min-height: 100vh;
   line-height: 1.5;
   font-size: 1.6rem;
+
    
 
 }
@@ -215,7 +213,6 @@ select:focus {
   outline-offset: -1px;
 }
 
-/* Parent selector, finally 😃 */
 button:has(svg) {
   line-height: 0;
 }
@@ -242,8 +239,6 @@ h6 {
 
 img {
   max-width: 100%;
-
-  /* For dark mode */
   filter: grayscale(var(--image-grayscale)) opacity(var(--image-opacity));
 }
 

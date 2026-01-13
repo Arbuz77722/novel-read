@@ -5,12 +5,12 @@ export function useBook(slug) {
   const {
     data: book,
     isPending: isBookLoading,
-    error,
+    isError,
   } = useQuery({
     queryKey: ['book', slug],
     queryFn: () => getBook(slug),
     enabled: !!slug,
   });
 
-  return { book, isBookLoading, error };
+  return { book, isBookLoading, isError };
 }

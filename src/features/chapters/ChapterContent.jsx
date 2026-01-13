@@ -8,6 +8,8 @@ import Spinner from '../../ui/Spinner';
 import styled from 'styled-components';
 import ChapterNavigation from '../../ui/ChapterNavigation';
 import useUpdateLastReadChapter from '../profile/edit/useUpdateLastReadChapter';
+import CommentSection from '../comments/CommentSection';
+import { useUser } from '../authentication/useUser';
 
 const StyledChapterContainer = styled.div`
   max-width: 900px;
@@ -46,6 +48,21 @@ const ChapterTitle = styled.h3`
   border-bottom: 1px solid var(--color-brand-700);
 `;
 
+const NoUserMessage = styled.p`
+  max-width: 50rem;
+  border-radius: 7px;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--color-brand-100);
+  padding: 2rem;
+  background-color: var(--color-grey-50);
+  margin: 15rem auto;
+`;
+
+const ChapterFooter = styled.div`
+  margin-top: 15rem;
+`;
 function ChapterContent() {
   const { slug, chapterId } = useParams();
   const { updateLastReadChapter } = useUpdateLastReadChapter();
@@ -55,6 +72,7 @@ function ChapterContent() {
     chapterId,
     { enabled: !!book?.id }
   );
+  const { user, isAuthenticated } = useUser();
   const { chapters = [], isChaptersLoading } = useChapters(book?.id, 1);
 
   useEffect(
@@ -108,22 +126,35 @@ function ChapterContent() {
   const formatted = formatHtmlContent(chapter.content);
 
   return (
-    <StyledChapterContainer>
-      <ChapterNavigation
-        chapters={chapters}
-        slug={slug}
-        currentChapterId={chapter.id}
-      />
-      <ChapterContentWrapper>
-        <ChapterTitle>{chapter.title}</ChapterTitle>
-        <ChapterText dangerouslySetInnerHTML={{ __html: formatted }} />
-      </ChapterContentWrapper>
-      <ChapterNavigation
-        chapters={chapters}
-        slug={slug}
-        currentChapterId={chapter.id}
-      />
-    </StyledChapterContainer>
+    <>
+      <StyledChapterContainer>
+        <ChapterNavigation
+          chapters={chapters}
+          slug={slug}
+          currentChapterId={chapter.id}
+        />
+        <ChapterContentWrapper>
+          <ChapterTitle>{chapter.title}</ChapterTitle>
+          <ChapterText dangerouslySetInnerHTML={{ __html: formatted }} />
+        </ChapterContentWrapper>
+        <ChapterNavigation
+          chapters={chapters}
+          slug={slug}
+          currentChapterId={chapter.id}
+        />
+      </StyledChapterContainer>
+      {!user || !isAuthenticated ? (
+        <NoUserMessage>Only logged in user can see the comments.</NoUserMessage>
+      ) : (
+        <ChapterFooter>
+          <CommentSection
+            targetId={book.id}
+            targetType='chapter'
+            expandCommentId={location.state?.expandCommentId}
+          />
+        </ChapterFooter>
+      )}
+    </>
   );
 }
 

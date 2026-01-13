@@ -10,7 +10,6 @@ const StyledHomeSections = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 3rem;
-  padding: 1rem;
 `;
 
 function HomeSections() {

@@ -25,8 +25,7 @@ const StyledTags = styled.ul`
   margin: 0;
   list-style: none;
   overflow: hidden;
-  max-height: ${(props) =>
-    props.$expanded ? '500px' : '90px'}; /* controls visible height */
+  max-height: ${(props) => (props.$expanded ? '500px' : '90px')};
   transition: max-height 0.3s ease-in-out;
 `;
 

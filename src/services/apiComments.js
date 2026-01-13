@@ -26,7 +26,6 @@ export async function getRootComments({
 
   if (error) throw error;
 
-  // Get current user once
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -129,7 +128,6 @@ export async function voteOnComments(commentId, vote) {
       .eq('user_id', user.id)
       .eq('comment_id', commentId);
 
-    // DELETE is idempotent — ignore "no rows" case
     if (error && error.code !== 'PGRST116') {
       throw error;
     }

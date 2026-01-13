@@ -2,7 +2,6 @@ import { useBookNavigation } from '../../hooks/useBookNavigation';
 import BookSection from '../../ui/BookSection';
 import RecentlyAddedChaptersItem from '../../ui/RecentlyAddedChaptersItem';
 import BookCardSkeleton from '../../ui/skeletons/BookCardSkeleton';
-import Spinner from '../../ui/Spinner';
 import { useBooksByFilter } from '../books/useBooksByFilter';
 
 function RecentlyAddedChapters() {
@@ -17,7 +16,7 @@ function RecentlyAddedChapters() {
       <BookSection
         ItemComponent={BookCardSkeleton}
         heading='New Ongoing Releases'
-        books={Array(12).fill({})} // Fake array to render 12 skeletons
+        books={Array(12).fill({})}
         display='flex'
         justify='space-between'
       />
@@ -32,6 +31,7 @@ function RecentlyAddedChapters() {
       to='/browse'
       display='flex'
       justify='space-between'
+      variant='updates'
       books={ongoingBooks}
       onBookClick={goToBook}
     />

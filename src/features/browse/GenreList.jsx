@@ -3,7 +3,6 @@ import StyledHeading from '../../ui/StyledHeading';
 import { useGenres } from './useGenres';
 import GenreItem from './GenreItem';
 import useBrowseParams from '../../hooks/useBrowseParams';
-import ResetButton from '../../ui/FilterReset';
 import { useLocation } from 'react-router-dom';
 import { useAdvancedSearch } from '../../context/AdvancedSearchProvider';
 

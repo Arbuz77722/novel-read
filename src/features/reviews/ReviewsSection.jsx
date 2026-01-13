@@ -66,8 +66,14 @@ const CharacteristicsColumn = styled.div`
 
 const CharacteristicRow = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 `;
 
 const WriteReviewSection = styled.div`

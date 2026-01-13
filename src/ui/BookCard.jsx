@@ -1,5 +1,4 @@
 import { BookOpenIcon } from 'lucide-react';
-
 import styled from 'styled-components';
 
 const StyledBookCard = styled.li`
@@ -21,18 +20,19 @@ const StyledBookCard = styled.li`
 const ImageContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 220px;
+  height: clamp(220px, 28vw, 260px);
+
   overflow: hidden;
 `;
 
 const StyledImg = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: top;
   transition: transform 0.4s ease;
 
   ${StyledBookCard}:hover & {
-    transform: scale(1.08);
+    transform: scale(1.05);
   }
 `;
 
@@ -97,10 +97,29 @@ const StyledBookIcon = styled(BookOpenIcon)`
   height: 18px;
 `;
 
-export function BookCard({ book, onBookClick }) {
-  const { cover_url, title, chapter_count: count } = book;
+const RatingBadge = styled.div`
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
 
-  // Fallback image if cover is missing
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+
+  padding: 0.4rem 0.6rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+
+  border-radius: 999px;
+  backdrop-filter: blur(4px);
+`;
+
+export function BookCard({ book, onBookClick }) {
+  const { cover_url, title, chapter_count: count, avg_rating } = book;
+
   const fallbackCover =
     'https://via.placeholder.com/300x220/cccccc/666666?text=No+Cover';
 
@@ -110,9 +129,12 @@ export function BookCard({ book, onBookClick }) {
         <StyledImg
           src={cover_url || fallbackCover}
           alt={`Cover of ${title}`}
-          onError={(e) => (e.target.src = fallbackCover)} // Fallback on load error
+          onError={(e) => (e.target.src = fallbackCover)}
         />
         <ImageOverlay />
+        <RatingBadge>
+          {avg_rating <= 0 ? 0 : avg_rating?.toFixed(1)} ⭐
+        </RatingBadge>
       </ImageContainer>
 
       <ContentWrapper>

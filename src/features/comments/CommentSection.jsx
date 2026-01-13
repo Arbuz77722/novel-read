@@ -8,7 +8,11 @@ import useComments from './useComments';
 import CommentSectionSkeleton from '../../ui/skeletons/CommentSectionSkeleton';
 import { useLocation } from 'react-router-dom';
 
-const StyledCommentSection = styled.section``;
+const StyledCommentSection = styled.section`
+  background-color: var(--color-grey-0);
+  padding: 2rem;
+  border-radius: 5px;
+`;
 const Message = styled.p`
   margin-bottom: 2rem;
 `;

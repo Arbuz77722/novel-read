@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getLibrary } from '../../services/apiProfile';
+import { getLibrary } from '../../../services/apiProfile';
 
 export function useLibrary() {
   const {

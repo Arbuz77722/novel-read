@@ -4,12 +4,11 @@ import { createComment as createCommentApi } from '../../services/apiComments';
 export default function useCreateComment({ targetType, targetId }) {
   const queryClient = useQueryClient();
 
-  const mutation = useMutation({
+  const { mutate, isPending, isError, error } = useMutation({
     mutationFn: ({ comment, parentId }) =>
       createCommentApi({ targetType, targetId, comment, parentId }),
 
     onSuccess: (newComment) => {
-      // newComment is now properly returned
       if (newComment.parent_id) {
         queryClient.invalidateQueries({
           queryKey: ['replies', newComment.parent_id],
@@ -20,17 +19,17 @@ export default function useCreateComment({ targetType, targetId }) {
         });
       }
     },
-
     onError: (err) => {
-      console.error('Failed to create comment:', err);
-      // You can add toast notification here later
+      if (import.meta.env.DEV) {
+        console.error(err);
+      }
     },
   });
 
   return {
-    createComment: mutation.mutate,
-    isPending: mutation.isPending,
-    isError: mutation.isError,
-    error: mutation.error,
+    createComment: mutate,
+    isPending,
+    isError,
+    error,
   };
 }

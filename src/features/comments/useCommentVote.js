@@ -7,7 +7,6 @@ export function useCommentVote() {
   return useMutation({
     mutationFn: ({ commentId, vote }) => voteOnComments(commentId, vote),
     onSuccess: () => {
-      // Invalidate everything comment-related — simple and reliable
       queryClient.invalidateQueries({ queryKey: ['comments'] });
       queryClient.invalidateQueries({ queryKey: ['replies'] });
     },

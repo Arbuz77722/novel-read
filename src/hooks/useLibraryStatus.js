@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLibrary } from '../features/books/useLibrary';
+import { useLibrary } from '../features/profile/library/useLibrary';
 import { useAddToLibrary } from '../features/profile/library/useAddToLibrary';
 
 export default function useLibraryStatus(bookId) {

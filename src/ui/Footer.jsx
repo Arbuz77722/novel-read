@@ -2,16 +2,10 @@ import styled from 'styled-components';
 import { max_width } from '../utils/constants';
 import Logo from './Logo';
 
-const StyledFooter = styled.footer`
-  max-width: ${max_width};
-  margin: 0 auto;
-  padding: 4rem 4.8rem;
-  color: var(--color-grey-700);
+const FooterWrapper = styled.footer`
+  width: 100%;
+  background-color: var(--color-grey-0);
   position: relative;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 4rem;
-  font-size: 1.4rem;
 `;
 
 const FullWidthBorder = styled.div`
@@ -22,7 +16,40 @@ const FullWidthBorder = styled.div`
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 0;
+`;
+
+const FooterInner = styled.div`
+  max-width: ${max_width};
+  margin: 0 auto;
+  padding: 4rem 1.6rem;
+
+  @media (min-width: 768px) {
+    padding: 4rem 3.2rem;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 4rem 4.8rem;
+  }
+`;
+
+const FooterGrid = styled.div`
+  display: grid;
+  gap: 3rem;
+  font-size: 1.4rem;
+
+  grid-template-columns: 1fr;
+
+  @media (min-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 900px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
 `;
 
 const Column = styled.div`
@@ -30,14 +57,14 @@ const Column = styled.div`
   flex-direction: column;
   gap: 1rem;
 
-  & h4 {
+  h4 {
     font-size: 1.6rem;
     font-weight: 600;
     margin-bottom: 0.8rem;
     color: var(--color-grey-900);
   }
 
-  & small {
+  small {
     font-size: 1.2rem;
     color: var(--color-grey-500);
     margin-top: 0.6rem;
@@ -56,45 +83,54 @@ const FooterLink = styled.a`
 
 function Footer() {
   return (
-    <div style={{ position: 'relative' }}>
+    <FooterWrapper>
       <FullWidthBorder />
-      <StyledFooter>
-        <Column>
-          <Logo />
-          <small>© 2025 Isekai Haven. All rights reserved.</small>
-        </Column>
 
-        <Column>
-          <FooterLink href='/ranking'>Ranking</FooterLink>
-          <FooterLink href='/latest-chapters'>Latest Chapters</FooterLink>
-          <FooterLink href='/latest-novels'>Latest Novels</FooterLink>
-          <FooterLink href='/search/advanced-search'>
-            Advanced Search
-          </FooterLink>
-        </Column>
+      <FooterInner>
+        <FooterGrid>
+          <Column>
+            <Logo />
+            <small>© 2025 Isekai Haven. All rights reserved.</small>
+          </Column>
 
-        <Column>
-          <FooterLink href='/browse?genres=18&page=1'>Romance</FooterLink>
-          <FooterLink href='/browse?genres=9&page=1'>Harem</FooterLink>
-          <FooterLink href='/browse?genres=1&page=1'>Action</FooterLink>
-          <FooterLink href='/browse?genres=7&page=1'>Fantasy</FooterLink>
-        </Column>
+          <Column>
+            <FooterLink href='/ranking'>Ranking</FooterLink>
+            <FooterLink href='/latest-chapters'>Latest Chapters</FooterLink>
+            <FooterLink href='/latest-novels'>Latest Novels</FooterLink>
+            <FooterLink href='/search/advanced-search'>
+              Advanced Search
+            </FooterLink>
+          </Column>
 
-        <Column>
-          <FooterLink href='/browse?genres=29&page=1'>Supernatural</FooterLink>
-          <FooterLink href='/browse?genres=26&page=1'>Slice of Life</FooterLink>
-          <FooterLink href='/browse?genres=13&page=1'>Martial Arts</FooterLink>
-          <FooterLink href='/browse?genres=20&page='>Sci-fi</FooterLink>
-        </Column>
+          <Column>
+            <FooterLink href='/browse?genres=18&page=1'>Romance</FooterLink>
+            <FooterLink href='/browse?genres=9&page=1'>Harem</FooterLink>
+            <FooterLink href='/browse?genres=1&page=1'>Action</FooterLink>
+            <FooterLink href='/browse?genres=7&page=1'>Fantasy</FooterLink>
+          </Column>
 
-        <Column>
-          <FooterLink href='/privacy-policy'>Privacy Policy</FooterLink>
-          <FooterLink href='/terms-of-service'>Terms of Service</FooterLink>
-          <FooterLink href='/dmca'>DMCA Notices</FooterLink>
-          <FooterLink href='/contact'>Contact Us</FooterLink>
-        </Column>
-      </StyledFooter>
-    </div>
+          <Column>
+            <FooterLink href='/browse?genres=29&page=1'>
+              Supernatural
+            </FooterLink>
+            <FooterLink href='/browse?genres=26&page=1'>
+              Slice of Life
+            </FooterLink>
+            <FooterLink href='/browse?genres=13&page=1'>
+              Martial Arts
+            </FooterLink>
+            <FooterLink href='/browse?genres=20&page='>Sci-fi</FooterLink>
+          </Column>
+
+          <Column>
+            <FooterLink href='/privacy-policy'>Privacy Policy</FooterLink>
+            <FooterLink href='/terms-of-service'>Terms of Service</FooterLink>
+            <FooterLink href='/dmca'>DMCA Notices</FooterLink>
+            <FooterLink href='/contact'>Contact Us</FooterLink>
+          </Column>
+        </FooterGrid>
+      </FooterInner>
+    </FooterWrapper>
   );
 }
 

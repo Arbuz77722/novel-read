@@ -1,7 +1,5 @@
 import Pagination from '../../ui/Pagination';
 import { useBooks } from './useBooks';
-import Spinner from '../../ui/Spinner';
-import Empty from '../../ui/Empty';
 import styled from 'styled-components';
 import BookFooterSkeleton from '../../ui/skeletons/BookFooter';
 

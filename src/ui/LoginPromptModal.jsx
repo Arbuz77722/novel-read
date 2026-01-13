@@ -1,13 +1,22 @@
 import Modal from './Modal';
 import Button from './Button';
+import styled from 'styled-components';
+
+const LoginMessage = styled.p`
+  font-size: 1.5rem;
+`;
+const ButtonLayout = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
 
 export default function LoginPromptModal({ onClose, onLogin }) {
   return (
     <Modal title='Login Required' onClose={onClose}>
-      <p style={{ fontSize: '1.5rem' }}>You need to login to continue.</p>
-      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+      <LoginMessage>You need to login to continue.</LoginMessage>
+      <ButtonLayout>
         <Button onClick={onLogin}>Login</Button>
-      </div>
+      </ButtonLayout>
     </Modal>
   );
 }

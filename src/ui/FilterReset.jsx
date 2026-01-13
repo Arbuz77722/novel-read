@@ -19,7 +19,6 @@ const StyledButton = styled.button`
     background: var(--color-brand-600);
   }
 
-  /* Absolute positioning only if "position" prop is true */
   ${(props) =>
     props.position
       ? `

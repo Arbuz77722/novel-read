@@ -7,6 +7,13 @@ const StyledBrowseFilter = styled.div`
   display: flex;
   gap: 3rem;
   margin: 3rem 0;
+
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1.6rem;
+  }
 `;
 
 function BrowseFilter() {

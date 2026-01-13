@@ -6,8 +6,6 @@ import { UserIcon, ChevronDown } from 'lucide-react';
 import Logout from '../features/authentication/Logout';
 import UserDropdownHeader from './UserDropdownHeader.jsx';
 
-/* ---------- Layout ---------- */
-
 const DropdownWrapper = styled.div`
   position: relative;
   display: inline-block;

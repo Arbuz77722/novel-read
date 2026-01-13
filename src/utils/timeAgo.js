@@ -16,7 +16,7 @@ export function timeAgo(inputDate) {
   const timeWithAmPm = date.toLocaleTimeString([], {
     hour: 'numeric',
     minute: '2-digit',
-    hour12: true, // 👈 force AM / PM
+    hour12: true,
   });
 
   if (diffSeconds < 60) return 'Just now';

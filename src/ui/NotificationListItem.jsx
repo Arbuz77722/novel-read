@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 import { useNavigate } from 'react-router-dom';
 import useGetSlugById from '../features/books/useGetSlugById';
 import useMarkNotificationAsRead from '../features/notifications/usemarkNotificationAsRead';

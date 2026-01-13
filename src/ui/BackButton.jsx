@@ -1,7 +1,5 @@
 import { HiArrowLeft } from 'react-icons/hi';
 import styled from 'styled-components';
-import { useBookNavigation } from '../hooks/useBookNavigation';
-import { useBook } from '../features/books/useBook';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const BackBtn = styled.button`

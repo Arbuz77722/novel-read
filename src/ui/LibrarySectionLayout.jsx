@@ -10,16 +10,23 @@ const MainTabs = styled.nav`
 `;
 
 const MainTab = styled(NavLink)`
-  font-size: 2rem;
+  font-size: 1.5rem;
+  padding-bottom: 0.7rem;
+
   font-weight: 600;
   color: var(--color-grey-600);
-  padding-bottom: 1.2rem;
+
   border-bottom: 3px solid transparent;
   transition: all 0.2s;
 
   &.active {
     color: var(--color-brand-600);
     border-bottom-color: var(--color-brand-600);
+  }
+
+  @media (min-width: 468px) {
+    font-size: 2rem;
+    padding-bottom: 1.2rem;
   }
 `;
 

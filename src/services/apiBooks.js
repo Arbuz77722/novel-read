@@ -25,7 +25,6 @@ export async function getBooks({
 
   let bookIds = null;
 
-  // ----- GENRES -----
   if (genreIds?.length > 0) {
     const { data: genreMatches, error: genreError } = await supabase
       .from('book_genres')
@@ -47,14 +46,12 @@ export async function getBooks({
         (bookId) => countMap[bookId] === genreIds.length
       );
     } else {
-      // OR logic
       bookIds = [...new Set(genreMatches.map((g) => g.book_id))];
     }
 
     if (bookIds.length === 0) return { books: [], count: 0 };
   }
 
-  // ----- INCLUDE TAGS -----
   if (includeTags?.length > 0) {
     const { data: included, error: includeError } = await supabase
       .from('book_tags')
@@ -74,7 +71,6 @@ export async function getBooks({
     if (bookIds.length === 0) return { books: [], count: 0 };
   }
 
-  // ----- EXCLUDE TAGS -----
   if (excludeTags?.length > 0) {
     const { data: excluded, error: excludeError } = await supabase
       .from('book_tags')
@@ -89,10 +85,8 @@ export async function getBooks({
     const excludedIds = new Set(excluded.map((t) => t.book_id));
 
     if (bookIds) {
-      // exclude from filtered bookIds
       bookIds = bookIds.filter((id) => !excludedIds.has(id));
     } else {
-      // fetch all book IDs from books table and exclude
       const { data: allBooks } = await supabase.from('books').select('id');
       bookIds = allBooks.map((b) => b.id).filter((id) => !excludedIds.has(id));
     }
@@ -100,7 +94,6 @@ export async function getBooks({
     if (bookIds.length === 0) return { books: [], count: 0 };
   }
 
-  // ----- MAIN BOOK QUERY -----
   let query = supabase
     .from('books')
     .select('*, book_genres!inner(genre_id), genres(id, name)', {
@@ -156,15 +149,12 @@ export async function getBooks({
     query = query.lte('chapter_count', maxChapter);
   }
 
-  // ----- RATING FILTER -----
   if (ratingMin) {
     query = query.gte('rating', ratingMin);
   }
   if (ratingMax) {
     query = query.lte('rating', ratingMax);
   }
-
-  // ----- PAGINATION -----
   const from = (page - 1) * PAGE_SIZE;
   const to = limit ? from + limit - 1 : from + PAGE_SIZE - 1;
   query = query.range(from, to);
@@ -172,11 +162,6 @@ export async function getBooks({
   if (limit) {
     query = query.limit(limit);
   }
-
-  // ----- SORT -----
-  // if (orderBy && sort) {
-  //   query = query.order(orderBy, { ascending: sort === 'asc' });
-  // }
 
   const { data: books, error, count } = await query;
 
@@ -353,7 +338,6 @@ export async function getBookTags(bookId) {
     throw new Error(`Failed to fetch tags: ${error.message}`);
   }
 
-  // Transform for easier use
   return {
     ...data,
     tag_ids: data.book_tags?.map((bt) => bt.tag_id) || [],

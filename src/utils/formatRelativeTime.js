@@ -1,9 +1,9 @@
 export function formatRelativeTime(timestamp) {
   if (!timestamp) return 'Unknown time';
 
-  const now = new Date(); // Current time in IST (2025-09-24T22:34:00+05:30)
-  const date = new Date(timestamp); // Parse ISO 8601 timestamp
-  const diffMs = now - date; // Difference in milliseconds
+  const now = new Date();
+  const date = new Date(timestamp);
+  const diffMs = now - date;
   const diffSeconds = Math.floor(diffMs / 1000);
   const diffMinutes = Math.floor(diffSeconds / 60);
   const diffHours = Math.floor(diffMinutes / 60);

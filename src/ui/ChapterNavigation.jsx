@@ -1,8 +1,6 @@
-// ui/ChapterNavigation.js
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { HiArrowLeft, HiArrowRight, HiBookOpen } from 'react-icons/hi';
-import Spinner from './Spinner';
 
 const NavButtons = styled.div`
   display: flex;

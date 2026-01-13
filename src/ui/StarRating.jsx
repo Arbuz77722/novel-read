@@ -4,30 +4,28 @@ const containerStyle = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  gap: '8px', // Reduced gap for tighter spacing
+  gap: '8px',
 };
 
 const starContainerStyle = {
   display: 'flex',
-  gap: '4px', // Small gap between stars for better visuals
+  gap: '4px',
 };
 
 export default function StarRating({
   maxRating = 5,
   color = ' #4338ca',
-  size = 24, // Smaller default size for smoother look
+  size = 24,
   className = '',
   messages = [],
   defaultRating = 0,
   rating: controlledRating,
   onSetRating,
   interactive = false,
-  precision = 0.5, // Allow half-star precision
+  precision = 0.5,
 }) {
   const [rating, setRating] = useState(defaultRating);
   const [tempRating, setTempRating] = useState(0);
-
-  // Use controlled value when in read-only mode
   const displayRating = interactive
     ? tempRating || rating
     : controlledRating || defaultRating;
@@ -62,7 +60,7 @@ export default function StarRating({
               half={isHalf}
               onRate={(e) => {
                 if (!interactive) return;
-                // Calculate rating based on click position within star
+
                 const rect = e.currentTarget.getBoundingClientRect();
                 const clickX = e.clientX - rect.left;
                 const starWidth = rect.width;
@@ -135,7 +133,6 @@ function Star({
           </clipPath>
         </defs>
 
-        {/* Outline */}
         <path
           d='M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8l-5.8 3.1 1.1-6.5L2.6 9.2l6.5-.9L12 2.5z'
           fill='none'
@@ -145,7 +142,6 @@ function Star({
           strokeLinejoin='round'
         />
 
-        {/* Filled (full or half) */}
         {(full || half) && (
           <path
             d='M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8l-5.8 3.1 1.1-6.5L2.6 9.2l6.5-.9L12 2.5z'

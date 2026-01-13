@@ -3,7 +3,7 @@ import { useAdvancedSearch } from '../../context/AdvancedSearchProvider';
 import useBrowseParams from '../../hooks/useBrowseParams';
 import useBooksBase from './useBooksBase';
 
-export function useBooks({ mode, ranking, limit } = {}) {
+export function useBooks({ mode } = {}) {
   const location = useLocation();
 
   const resolvedMode =
@@ -11,9 +11,7 @@ export function useBooks({ mode, ranking, limit } = {}) {
     (location.pathname.includes('advanced-search') ? 'advanced' : 'browse');
 
   const page = Number(new URLSearchParams(location.search).get('page')) || 1;
-  if (ranking && limit) {
-    return useBooksBase({ ranking, limit });
-  }
+
   if (resolvedMode === 'advanced') {
     const { appliedFilters } = useAdvancedSearch();
     const {

@@ -110,13 +110,12 @@ const ToggleBtn = styled.span`
 export default function AdvancedSearchBookCardItem({ book, goToBook, genres }) {
   const [expanded, setExpanded] = useState(false);
 
-  // Safeguard: Default book properties
   const {
     cover_url = '/fallback-cover.png',
     title = 'Untitled Book',
     description = '',
     genre_ids = [],
-    genres: bookGenresData = [], // Support book.genres
+    genres: bookGenresData = [],
     rating = 0,
     country = 'CN',
     reviews_count = 0,
@@ -124,11 +123,8 @@ export default function AdvancedSearchBookCardItem({ book, goToBook, genres }) {
     chapter_count = 0,
   } = book || {};
 
-  // Description truncation
   const words = description ? description.split(' ') : [];
   const shortDesc = words.slice(0, 20).join(' ') + '\n';
-
-  // Map genre IDs to names, fallback to book.genres
   const bookGenres = bookGenresData.length
     ? bookGenresData.map((g) => g.name).filter(Boolean)
     : Array.isArray(genre_ids)

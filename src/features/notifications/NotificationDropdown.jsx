@@ -32,7 +32,7 @@ const NotificationPanel = styled.div`
   position: absolute;
   top: calc(100% + 0.9rem);
   right: 0;
-  width: 380px;
+  width: 300px;
   max-height: 70vh;
   background-color: var(--color-grey-0);
   border: 1px solid var(--color-grey-200);

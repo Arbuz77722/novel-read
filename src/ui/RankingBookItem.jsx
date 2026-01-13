@@ -5,9 +5,8 @@ import { EyeIcon, BookmarkPlusIcon } from 'lucide-react';
 const StyledBookItem = styled.li`
   display: flex;
   gap: 1rem;
-  margin-bottom: 1rem;
+  min-width: 0;
 `;
-
 const StyledImg = styled.img`
   width: 40px;
   height: 50px;
@@ -20,7 +19,10 @@ const StyledImg = styled.img`
 
 const StyledTitle = styled.h6`
   font-size: 1.2rem;
-  margin: 0; /* Remove default margin for consistency */
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   cursor: pointer;
   transition: color 0.2s ease;
   &:hover {
@@ -65,7 +67,6 @@ export default function RankingBookItem({ book, type, onBookClick }) {
           {title || 'Untitled'}
         </StyledTitle>
 
-        {/* Most Read */}
         {type === 'views' && (
           <>
             <StyledStats aria-label={`${views} views`}>
@@ -79,7 +80,6 @@ export default function RankingBookItem({ book, type, onBookClick }) {
           </>
         )}
 
-        {/* Trending */}
         {type === 'trends' && (
           <>
             <StyledStats aria-label={`${weekly_views} weekly views`}>
@@ -97,7 +97,6 @@ export default function RankingBookItem({ book, type, onBookClick }) {
           </>
         )}
 
-        {/* Popular */}
         {type === 'rated' && (
           <>
             <StyledStats aria-label={`${bookmarks} bookmarks`}>

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import StyledNavLink from './StyledNavLink';
 import SearchBox from '../features/search/SearchBox';
-
 import { CompassIcon, HomeIcon } from 'lucide-react';
 
 const StyledHeaderMenu = styled.ul`

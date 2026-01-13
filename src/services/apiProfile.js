@@ -10,7 +10,7 @@ export async function getProfile() {
     .from('profiles')
     .select('*')
     .eq('id', user.id)
-    .single();
+    .maybeSingle();
 
   if (error) {
     console.error('Profile fetch error:', {
@@ -103,7 +103,7 @@ export async function updateLastReadChapter({ bookId, chapterId }) {
     .select('id')
     .eq('book_id', bookId)
     .eq('user_id', user.id)
-    .single();
+    .maybeSingle();
 
   if (fetchError || !libraryEntry) return;
 

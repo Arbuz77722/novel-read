@@ -1,11 +1,8 @@
-import { useBooks } from '../features/books/useBooks';
 import BrowseFilter from '../features/browse/BrowseFilter';
 import Genre from '../features/browse/Genre';
-import { useGenres } from '../features/browse/useGenres';
 import useBrowseParams from '../hooks/useBrowseParams';
 import BrowseBook from '../features/browse/BrowseBook';
 import ResetButton from './FilterReset';
-import Spinner from './Spinner';
 import BookFooter from '../features/books/BookFooter';
 
 function BrowseSections() {

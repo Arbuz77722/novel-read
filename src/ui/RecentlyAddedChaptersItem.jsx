@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 import { useLatestChapter } from '../features/chapters/useLatestChapter';
 import { formatRelativeTime } from '../utils/formatRelativeTime';
 import { useNavigate } from 'react-router-dom';
@@ -7,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const StyledRecentlyAddedChaptersItem = styled.li`
   display: flex;
   gap: 1rem;
+  min-width: 0;
 `;
 const StyledImg = styled.img`
   width: 40px;
@@ -20,6 +20,10 @@ const StyledImg = styled.img`
 
 const StyledTitle = styled.h6`
   font-size: 1.2rem;
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   cursor: pointer;
   transition: color 0.2s ease;
   &:hover {
@@ -53,7 +57,6 @@ function RecentlyAddedChaptersItem({ book, onBookClick }) {
   const {
     cover_url: cover = '/default-cover.jpg',
     title = 'Untitled Book',
-    id,
     slug,
     latest_chapter_at,
     latest_chapter_id,

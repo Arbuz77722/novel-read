@@ -5,8 +5,6 @@ import { HiReply, HiThumbDown, HiThumbUp } from 'react-icons/hi';
 import { useCommentVote } from './useCommentVote';
 import { displayRole } from '../../utils/displayRole';
 
-/* ---------------- STYLES ---------------- */
-
 const Card = styled.div`
   padding: 2.5rem;
   border-radius: 12px;

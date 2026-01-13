@@ -115,10 +115,15 @@ const FilterButton = styled.button`
 const StyledSelect = styled(Select).attrs({
   classNamePrefix: 'react-select',
 })`
+  flex: 1 1 200px;
+  min-width: 200px;
+  max-width: 100%;
+
   .react-select__placeholder {
     color: var(--color-brand-500);
     font-style: italic;
   }
+
   .react-select__dropdown-indicator {
     color: var(--color-brand-600);
   }
@@ -126,6 +131,7 @@ const StyledSelect = styled(Select).attrs({
   .react-select__dropdown-indicator:hover {
     color: var(--color-brand-700);
   }
+
   .react-select__value-container {
     flex-wrap: wrap;
     gap: 4px;
@@ -137,10 +143,9 @@ const StyledSelect = styled(Select).attrs({
     min-height: 40px;
     font-size: 1.5rem;
     color: var(--color-brand-500);
-    width: 350px;
+    width: 100%;
   }
 
-  /* ✅ Selected tags (chips) */
   .react-select__multi-value {
     background-color: var(--color-brand-100);
     color: var(--color-brand-600);
@@ -237,7 +242,6 @@ export default function AdvancedSearchFilter() {
         borderColor='var(--color-grey-200)'
       />
 
-      {/* Novel Type */}
       <Section>
         <SectionTitle>Novel Type</SectionTitle>
         <OptionsGrid>
@@ -260,7 +264,6 @@ export default function AdvancedSearchFilter() {
         </OptionsGrid>
       </Section>
 
-      {/* Language */}
       <Section>
         <SectionTitle>Language</SectionTitle>
         <OptionsGrid>
@@ -277,7 +280,6 @@ export default function AdvancedSearchFilter() {
         </OptionsGrid>
       </Section>
 
-      {/* Chapters */}
       <Section>
         <SectionTitle>Chapters</SectionTitle>
         <ChapterCount>
@@ -300,7 +302,6 @@ export default function AdvancedSearchFilter() {
         </ChapterCount>
       </Section>
 
-      {/* Genres */}
       <Section>
         <SectionTitle>
           Genres
@@ -324,7 +325,6 @@ export default function AdvancedSearchFilter() {
         />
       </Section>
 
-      {/* Tags */}
       <Section>
         <SectionTitle>Tags</SectionTitle>
         <ControlRow>
@@ -359,7 +359,6 @@ export default function AdvancedSearchFilter() {
         </ControlRow>
       </Section>
 
-      {/* Status */}
       <Section>
         <SectionTitle>Status</SectionTitle>
         <FilterByStatus
@@ -371,7 +370,6 @@ export default function AdvancedSearchFilter() {
         />
       </Section>
 
-      {/* Rating */}
       <Section>
         <SectionTitle>Rating</SectionTitle>
         <ChapterCount>
@@ -406,7 +404,6 @@ export default function AdvancedSearchFilter() {
         </ChapterCount>
       </Section>
 
-      {/* Sort */}
       <Section>
         <SectionTitle>Sort</SectionTitle>
         <ControlRow>
@@ -429,7 +426,6 @@ export default function AdvancedSearchFilter() {
         </ControlRow>
       </Section>
 
-      {/* Buttons */}
       <Buttons>
         <FilterButton onClick={applyFilters}>Apply Filter</FilterButton>
         {hasActiveFilters && <ResetButton onClick={resetFilters} />}

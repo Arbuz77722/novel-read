@@ -5,14 +5,17 @@ import styled from 'styled-components';
 const Container = styled.div`
   margin-top: 2.4rem;
 `;
+const Main = styled.div`
+  margin-top: 4rem;
+`;
 
 function LibraryStatusLayout() {
   return (
     <Container>
       <LibrarySubTabs />
-      <div style={{ marginTop: '4rem' }}>
+      <Main>
         <Outlet />
-      </div>
+      </Main>
     </Container>
   );
 }

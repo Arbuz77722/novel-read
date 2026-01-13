@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import StyledItemActive from '../../ui/StyledItemActive';
 
 const StyledTag = styled.li`
   padding: 0.5rem 1rem;

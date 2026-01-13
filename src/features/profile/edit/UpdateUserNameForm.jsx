@@ -19,6 +19,12 @@ const AvatarRow = styled.div`
   display: flex;
   align-items: center;
   gap: 1.5rem;
+  width: 100%;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 const AvatarImage = styled.img`
@@ -33,6 +39,11 @@ const FileInfo = styled.p`
   margin-top: 0.5rem;
   font-size: 0.85rem;
   color: #666;
+`;
+
+const FileInputWrapper = styled.div`
+  flex: 1;
+  min-width: 0;
 `;
 
 function UpdateUserNameForm() {
@@ -90,14 +101,14 @@ function UpdateUserNameForm() {
         <FormRow label='Avatar image'>
           <AvatarRow>
             <AvatarImage src={avatarPreview} alt='Avatar preview' />
-            <div>
+            <FileInputWrapper>
               <FileInput
                 accept='image/*'
                 disabled={isUploading}
                 onChange={(e) => setAvatar(e.target.files?.[0] ?? null)}
               />
               {avatar && <FileInfo>{avatar.name}</FileInfo>}
-            </div>
+            </FileInputWrapper>
           </AvatarRow>
         </FormRow>
 
