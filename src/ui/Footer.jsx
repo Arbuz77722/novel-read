@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { max_width } from '../utils/constants';
 import Logo from './Logo';
-import { Link } from 'react-router-dom'; // ✅ Import Link from React Router
+import { Link } from 'react-router-dom';
 
 const FooterWrapper = styled.footer`
   width: 100%;
@@ -73,7 +73,6 @@ const Column = styled.div`
 `;
 
 const FooterLink = styled(Link)`
-  // ✅ Use Link instead of <a>
   text-decoration: none;
   color: var(--color-grey-700);
   transition: color 0.2s;
