@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import NotificationList from './NotificationList';
 import NotificationsBell from '../../ui/NotificationsBell.jsx';
-import { Link, useNavigation } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ButtonIcon from '../../ui/ButtonIcon.jsx';
 import { useNotificationInbox } from './useNotificationInbox.js';
 import normalizeNotifcationData from '../../utils/normalizeNotifcationData.js';
@@ -107,7 +107,7 @@ const ViewMoreLink = styled(Link)`
 function NotificationDropdown() {
   const { inbox, isPending } = useNotificationInbox();
   const { markAllAsRead } = useMarkAllNotificationsAsRead();
-  const navigate = useNavigation();
+  const navigate = useNavigate();
 
   const inboxNotifications = inbox
     ?.filter((data) => !data.is_read)
@@ -180,7 +180,7 @@ function NotificationDropdown() {
           </ListContainer>
 
           <Footer>
-            <ViewMoreLink as='button' onClick={handleNavigation}>
+            <ViewMoreLink to='/profile/inbox' onClick={handleNavigation}>
               View all notifications
             </ViewMoreLink>
           </Footer>
