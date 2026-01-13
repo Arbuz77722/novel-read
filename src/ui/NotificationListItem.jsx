@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import useGetSlugById from '../features/books/useGetSlugById';
-import useMarkNotificationAsRead from '../features/notifications/usemarkNotificationAsRead';
+import useMarkNotificationAsRead from '../features/notifications/useMarkNotificationAsRead';
 import getNotificationRoute from '../utils/getNotificationRoute';
 import { NotificationLabel } from '../utils/NotificationLabels';
 import { timeAgo } from '../utils/timeAgo';
