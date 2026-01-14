@@ -1,12 +1,26 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import path from 'path-browserify'; // install this first: npm install path-browserify
+import path from 'path-browserify';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react({
+      babel: {
+        plugins: [
+          [
+            'babel-plugin-styled-components',
+            {
+              displayName: true,
+              fileName: false,
+            },
+          ],
+        ],
+      },
+    }),
+  ],
   resolve: {
     alias: {
-      path: 'path-browserify', // Redirect Node 'path' imports to browser-compatible version
+      path: 'path-browserify',
     },
   },
 });

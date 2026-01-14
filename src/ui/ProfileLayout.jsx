@@ -7,7 +7,7 @@ import ProfileSidebarToggle from './ProfileSideBarToggle';
 const StyledProfileLayout = styled.div`
   display: grid;
   grid-template-columns: 26rem 1fr;
-  height: calc(100vh - var(--header-height));
+  height: calc(100dvh - var(--header-height));
   overflow: hidden;
 
   @media (max-width: 1024px) {
@@ -37,9 +37,19 @@ const SidebarWrapper = styled.aside`
 `;
 
 const Main = styled.main`
-  padding: 3.2rem 4.8rem;
+  padding: 1rem;
   overflow-y: auto;
   background-color: var(--color-grey-50);
+
+  padding: 1rem;
+
+  @media (min-width: 768px) {
+    padding: 3.2rem 4.8rem;
+  }
+
+  @media (max-width: 400px) {
+    padding: 0.8rem;
+  }
 `;
 
 const Container = styled.div`
@@ -48,6 +58,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2.4rem;
+  @media (max-width: 480px) {
+    gap: 1.6rem;
+  }
 `;
 
 function ProfileLayout() {

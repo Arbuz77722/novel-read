@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import { useUser } from '../features/authentication/useUser';
 import styled from 'styled-components';
 import Spinner from './Spinner';

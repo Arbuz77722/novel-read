@@ -5,10 +5,14 @@ import ProgressBar from './ProgressBar';
 import { timeAgo } from '../utils/timeAgo';
 
 const StyledCard = styled.li`
-  padding: 1.2rem;
+  padding: 1rem;
   border-radius: 12px;
   background-color: var(--color-grey-100);
   box-shadow: var(--shadow-sm);
+
+  @media (min-width: 468px) {
+    padding: 1.2rem;
+  }
 `;
 
 const Layout = styled.div`
@@ -48,6 +52,7 @@ const ContinueButton = styled.button`
 const RightColumn = styled.div`
   display: flex;
   flex-direction: column;
+  min-width: 0;
 `;
 
 const Title = styled.h3`
