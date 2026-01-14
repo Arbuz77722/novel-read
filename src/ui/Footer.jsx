@@ -7,6 +7,7 @@ const FooterWrapper = styled.footer`
   width: 100%;
   background-color: var(--color-grey-0);
   position: relative;
+  margin-top: 1rem;
 `;
 
 const FullWidthBorder = styled.div`
@@ -72,7 +73,7 @@ const Column = styled.div`
   }
 `;
 
-const FooterLinkStyled = styled(Link)`
+const FooterLink = styled(Link)`
   text-decoration: none;
   color: var(--color-grey-700);
   transition: color 0.2s;
@@ -81,18 +82,6 @@ const FooterLinkStyled = styled(Link)`
     color: var(--color-brand-600);
   }
 `;
-
-function FooterLink({ to, children }) {
-  const handleClick = () => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-  };
-
-  return (
-    <FooterLinkStyled to={to} onClick={handleClick}>
-      {children}
-    </FooterLinkStyled>
-  );
-}
 
 function Footer() {
   return (
@@ -107,9 +96,11 @@ function Footer() {
           </Column>
 
           <Column>
-            <FooterLink to='/ranking'>Ranking</FooterLink>
-            <FooterLink to='/latest-chapters'>Latest Chapters</FooterLink>
-            <FooterLink to='/latest-novels'>Latest Novels</FooterLink>
+            <FooterLink to='/browse?order=popular&page=1'>Ranking</FooterLink>
+            <FooterLink to='/browse?order=updates&page=1'>
+              Latest Chapters
+            </FooterLink>
+            <FooterLink to='/browse'>Latest Novels</FooterLink>
             <FooterLink to='/search/advanced-search'>
               Advanced Search
             </FooterLink>
@@ -132,8 +123,8 @@ function Footer() {
           <Column>
             <FooterLink to='/privacy-policy'>Privacy Policy</FooterLink>
             <FooterLink to='/terms-of-service'>Terms of Service</FooterLink>
-            <FooterLink to='/dmca'>DMCA Notices</FooterLink>
-            <FooterLink to='/contact'>Contact Us</FooterLink>
+            <FooterLink to='/dmca-notice'>DMCA Notices</FooterLink>
+            <FooterLink to='/contact-us'>Contact Us</FooterLink>
           </Column>
         </FooterGrid>
       </FooterInner>

@@ -14,19 +14,24 @@ const StyledButton = styled.button`
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.2s ease;
+  position: absolute;
+  top: 14rem;
+  right: 2rem;
 
   &:hover {
     background: var(--color-brand-600);
   }
 
-  ${(props) =>
-    props.position
-      ? `
+  @media (min-width: 640px) {
+    ${(props) =>
+      props.position
+        ? `
       position: absolute;
       top: ${props.top !== undefined ? `${props.top}rem` : '10rem'};
       right: ${props.right !== undefined ? `${props.right}rem` : '2rem'};
     `
-      : 'position: relative;'}
+        : 'position: relative;'}
+  }
 `;
 
 function ResetButton({ top, right, position, onClick }) {

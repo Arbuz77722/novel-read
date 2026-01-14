@@ -4,12 +4,13 @@ const Form = styled.form`
   ${({ type = 'regular' }) =>
     type === 'regular' &&
     css`
-      padding: 2.4rem 4rem;
-      padding: 2.4rem 4rem;
       background-color: var(--color-grey-0);
       display: grid;
       gap: 1.6rem;
       width: 100%;
+      @media (min-width: 640px) {
+        padding: 2.4rem 4rem;
+      }
     `}
 
   ${({ type = 'regular' }) =>

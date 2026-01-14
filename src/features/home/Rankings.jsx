@@ -39,7 +39,7 @@ function Rankings() {
     <>
       <StyledHeading
         heading='Rankings'
-        to='/browse'
+        to='/browse?order=popular&page=1'
         display='flex'
         justify='space-between'
       />

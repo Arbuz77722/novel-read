@@ -5,6 +5,8 @@ import Header from './Header';
 import Footer from './Footer';
 import { max_width } from '../utils/constants';
 import { NotificationSettingsProvider } from '../context/NotificationSettingsContext';
+import ScrollToTop from './ScrollToTop';
+import ScrollToTopArrowButton from './ScrollToTopArrowButton';
 
 const AppWrapper = styled.div`
   min-height: 100vh;
@@ -48,11 +50,13 @@ function AppLayout() {
   return (
     <NotificationSettingsProvider>
       <AppWrapper>
+        <ScrollToTop />
         <Header />
         <MainContainer>
           <Outlet />
         </MainContainer>
         <Footer />
+        <ScrollToTopArrowButton />
       </AppWrapper>
     </NotificationSettingsProvider>
   );

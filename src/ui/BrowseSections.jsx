@@ -11,7 +11,7 @@ function BrowseSections() {
   return (
     <div>
       <Genre />
-      {hasActiveFilters && <ResetButton position top={15} right={24} />}
+      {hasActiveFilters && <ResetButton position top={14} right={24} />}
       <BrowseFilter />
       <BrowseBook />
       <BookFooter />

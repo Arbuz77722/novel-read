@@ -10,18 +10,26 @@ const PageWrapper = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 2rem;
+  padding: 1rem;
+
+  @media (min-width: 640px) {
+    padding: 2rem;
+  }
 `;
 
 const Card = styled.div`
   background-color: var(--color-grey-0);
-  padding: 4rem;
+  padding: 2rem;
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-lg);
   width: 100%;
   max-width: 48rem;
   display: grid;
   gap: 2rem;
+
+  @media (min-width: 640px) {
+    padding: 4rem;
+  }
 `;
 
 const FooterText = styled.p`

@@ -51,8 +51,6 @@ function ProfileInbox() {
     normalizeNotifcationData(data)
   );
 
-  console.log(inboxNotifications);
-
   return (
     <StyledInbox>
       <Title>Inbox</Title>

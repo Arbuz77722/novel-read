@@ -12,11 +12,14 @@ const PageWrapper = styled.div`
 
 const Card = styled.div`
   background-color: var(--color-grey-0);
-  padding: 4rem;
+  padding: 2rem;
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-lg);
   width: 100%;
   max-width: 100%;
+  @media (min-width: 640px) {
+    padding: 4rem;
+  }
 `;
 
 const Title = styled.h1`

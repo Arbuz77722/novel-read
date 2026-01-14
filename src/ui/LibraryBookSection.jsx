@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import useGetLibraryBooks from '../features/profile/library/useGetLibraryBooks';
 import { useContinueReading } from '../hooks/useContinueReading';
 import LibraryBookSectionSkeleton from './skeletons/LibraryBookSectionSkeleton';
+import Empty from './Empty';
 
 const StyledBookSection = styled.ul`
   display: grid;
@@ -60,6 +61,9 @@ function LibraryBookSection({ ItemComponent, status, tab }) {
   }
 
   const filteredBooks = getBooksForTab({ libraryBooks, status, tab });
+  if (!filteredBooks.length) {
+    return <Empty resourceName='books' status={status} />;
+  }
 
   return (
     <StyledBookSection>

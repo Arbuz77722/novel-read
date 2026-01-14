@@ -2,18 +2,36 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const SubTabs = styled.nav`
-  display: flex;
-  gap: 3.2rem;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 1.2rem;
+
+  @media (max-width: 640px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
 
 const SubTab = styled(NavLink)`
-  font-size: 1.6rem;
-  color: var(--color-grey-600);
-  padding: 0.8rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem;
+  border-radius: 5px;
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-decoration: none;
+  background-color: var(--color-grey-100);
+  color: var(--color-grey-700);
+
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: var(--color-grey-200);
+  }
 
   &.active {
-    color: var(--color-brand-600);
+    background-color: var(--color-brand-600);
+    color: var(--color-grey-700);
     font-weight: 600;
   }
 `;

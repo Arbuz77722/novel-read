@@ -1,5 +1,5 @@
-import { Outlet } from 'react-router-dom';
-import { useState } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ProfileSidebar from './ProfileSidebar';
 import ProfileSidebarToggle from './ProfileSideBarToggle';
@@ -66,11 +66,17 @@ const Container = styled.div`
 function ProfileLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+  const location = useLocation();
+
+  useEffect(() => {
+    setIsSidebarOpen(false);
+  }, [location.pathname]);
+
   return (
     <>
       <ProfileSidebarToggle
         isOpen={isSidebarOpen}
-        onToggle={() => setIsSidebarOpen((v) => !v)}
+        onToggle={() => setIsSidebarOpen((open) => !open)}
       />
 
       <StyledProfileLayout>

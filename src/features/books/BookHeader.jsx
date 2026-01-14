@@ -72,6 +72,14 @@ const MetadataItem = styled.div`
   }
 `;
 
+const Type = styled.p`
+  margin: 0;
+  color: var(--color-grey-800);
+  font-weight: 400;
+  font-size: 1.5rem;
+  text-transform: capitalize;
+`;
+
 const StatusTag = styled.p`
   display: inline-block;
   padding: 0.3rem 1rem;
@@ -87,7 +95,11 @@ const ContentColumn = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  min-width: 300px;
+  min-width: 280px;
+
+  @media (min-width: 600px) {
+    min-width: 300px;
+  }
 `;
 
 const BookTitle = styled.h1`
@@ -177,6 +189,7 @@ function BookHeader({ book }) {
 
   return (
     <BookHeaderContainer>
+      <BookTitle>{title}</BookTitle>
       <BookHeaderFlex>
         <CoverColumn>
           <BookCover src={cover_url} alt={`Cover of ${title}`} />
@@ -190,14 +203,13 @@ function BookHeader({ book }) {
           </MetadataItem>
           <MetadataItem>
             <span>Type</span>
-            <p>
+            <Type>
               {type} ({country})
-            </p>
+            </Type>
           </MetadataItem>
         </CoverColumn>
 
         <ContentColumn>
-          <BookTitle>{title}</BookTitle>
           <SectionTitle>Description</SectionTitle>
           <BookDescription>{description}</BookDescription>
 

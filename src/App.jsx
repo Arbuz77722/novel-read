@@ -28,6 +28,10 @@ import ProfileLayout from './ui/ProfileLayout';
 import LibraryStatusLayout from './ui/LibraryStatusLayout';
 import LibraryBooks from './features/profile/library/LibraryBooks';
 import ProfileInbox from './features/profile/ProfileInbox';
+import PrivacyPolicy from './ui/PrivacyPolicy';
+import TermsOfService from './ui/TermsOfService';
+import DMCANotice from './ui/DmcaNotice';
+import ContactUs from './ui/ContactUs';
 
 function App() {
   const queryClient = new QueryClient({
@@ -64,6 +68,22 @@ function App() {
         { path: 'about', element: <About /> },
         { path: 'login', element: <Login /> },
         { path: 'signup', element: <SignUp /> },
+        {
+          path: 'privacy-policy',
+          element: <PrivacyPolicy />,
+        },
+        {
+          path: 'terms-of-service',
+          element: <TermsOfService />,
+        },
+        {
+          path: 'dmca-notice',
+          element: <DMCANotice />,
+        },
+        {
+          path: 'contact-us',
+          element: <ContactUs />,
+        },
 
         {
           element: <ProtectedRoutes />,

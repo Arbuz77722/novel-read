@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Logo from './Logo';
 import HeaderMenu from './HeaderMenu';
@@ -11,6 +11,7 @@ import { useUser } from '../features/authentication/useUser';
 import UserSkeleton from './skeletons/UserSkeleton';
 import { max_width } from '../utils/constants';
 import NotificationDropdown from '../features/notifications/NotificationDropdown';
+import { useLocation } from 'react-router-dom';
 
 const StyledHeader = styled.header`
   max-width: ${max_width};
@@ -88,6 +89,12 @@ const MobileRightGroup = styled.div`
 export default function Header() {
   const { user, isAuthenticated, isPending } = useUser();
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location.pathname]);
 
   return (
     <StyledHeader>

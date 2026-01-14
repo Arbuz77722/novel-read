@@ -8,6 +8,7 @@ const StyledRecentlyAddedChaptersItem = styled.li`
   gap: 1rem;
   min-width: 0;
 `;
+
 const StyledImg = styled.img`
   width: 40px;
   height: 50px;
