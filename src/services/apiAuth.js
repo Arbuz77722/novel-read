@@ -66,8 +66,7 @@ export async function updateCurrentUser({ password, username, avatar }) {
       });
 
     if (uploadError) {
-      if (uploadError.error === 'Duplicate') {
-      } else {
+      if (uploadError.error !== 'Duplicate') {
         throw new Error(uploadError.message);
       }
     }
