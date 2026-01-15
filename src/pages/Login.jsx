@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Logo from '../ui/Logo';
+
 import Heading from '../ui/Heading';
 import LoginForm from '../features/authentication/LoginForm';
 import { Link, Navigate } from 'react-router-dom';
@@ -33,7 +33,6 @@ const Card = styled.div`
 `;
 
 const FooterText = styled.p`
-  margin-top: 1.6rem;
   font-size: 1.4rem;
   color: var(--color-grey-600);
 
@@ -52,11 +51,13 @@ function Login() {
   return (
     <PageWrapper>
       <Card>
-        <Logo />
         <Heading as='h4'>Login to your account</Heading>
         <LoginForm />
         <FooterText>
           Don't have an account? <Link to='/signup'>Sign up</Link>
+        </FooterText>
+        <FooterText>
+          Forget password? <Link to='/forgot-password'>Forgot password</Link>
         </FooterText>
       </Card>
     </PageWrapper>

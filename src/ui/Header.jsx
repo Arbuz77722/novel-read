@@ -34,6 +34,7 @@ const BottomRow = styled.div`
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
+  height: 64px;
   @media (min-width: 768px) {
     gap: 2.4rem;
   }

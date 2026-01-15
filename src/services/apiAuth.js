@@ -99,3 +99,19 @@ export async function updateCurrentUser({ password, username, avatar }) {
 
   return { success: true };
 }
+
+export async function forgotPassword(email) {
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: `${window.location.origin}/reset-password`,
+  });
+
+  if (error) throw new Error(error.message);
+}
+
+export async function resetPassword(newPassword) {
+  const { error } = await supabase.auth.updateUser({
+    password: newPassword,
+  });
+
+  if (error) throw new Error(error.message);
+}

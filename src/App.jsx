@@ -32,6 +32,8 @@ import PrivacyPolicy from './ui/PrivacyPolicy';
 import TermsOfService from './ui/TermsOfService';
 import DMCANotice from './ui/DmcaNotice';
 import ContactUs from './ui/ContactUs';
+import ResetPassword from './pages/ResetPassword';
+import ForgotPassword from './pages/ForgotPassword';
 
 function App() {
   const queryClient = new QueryClient({
@@ -68,6 +70,14 @@ function App() {
         { path: 'about', element: <About /> },
         { path: 'login', element: <Login /> },
         { path: 'signup', element: <SignUp /> },
+        {
+          path: 'forgot-password',
+          element: <ForgotPassword />,
+        },
+        {
+          path: 'reset-password',
+          element: <ResetPassword />,
+        },
         {
           path: 'privacy-policy',
           element: <PrivacyPolicy />,
