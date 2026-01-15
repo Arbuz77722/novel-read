@@ -4,16 +4,27 @@ import Form from '../../ui/Form';
 import FormRow from '../../ui/FormRow';
 import Input from '../../ui/Input';
 import useSignup from './useSignUp';
+import { useNavigate } from 'react-router-dom';
 
 function SignUpForm() {
+  const navigate = useNavigate();
   const { signup, isPending } = useSignup();
   const { register, formState, getValues, handleSubmit, reset } = useForm({
     mode: 'onChange',
   });
   const { errors } = formState;
   function onSubmit({ fullName, userName, email, password }) {
-    signup({ fullName, userName, email, password }, { onSettled: reset() });
+    signup(
+      { fullName, userName, email, password },
+      {
+        onSuccess: () => {
+          reset();
+          navigate('/', { replace: true });
+        },
+      }
+    );
   }
+
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <FormRow label='Full name' error={errors?.fullName?.message}>
