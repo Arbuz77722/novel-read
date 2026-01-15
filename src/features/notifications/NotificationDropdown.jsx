@@ -86,10 +86,12 @@ const ListContainer = styled.div`
 `;
 
 const Footer = styled.div`
+  text-align: center;
+  position: sticky;
+  bottom: 0;
+  background-color: var(--color-grey-50);
   padding: 1rem;
   border-top: 1px solid var(--color-grey-200);
-  background-color: var(--color-grey-50);
-  text-align: center;
 `;
 
 const ViewMoreLink = styled(Link)`
@@ -178,7 +180,6 @@ function NotificationDropdown() {
               markOnClick
             />
           </ListContainer>
-
           <Footer>
             <ViewMoreLink to='/profile/inbox' onClick={handleNavigation}>
               View all notifications

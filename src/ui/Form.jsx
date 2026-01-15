@@ -8,7 +8,6 @@ const Form = styled.form`
       display: grid;
       gap: 1.6rem;
       width: 100%;
-      justify-content: center;
       @media (min-width: 640px) {
         padding: 2.4rem 4rem;
       }

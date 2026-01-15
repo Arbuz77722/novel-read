@@ -5,6 +5,7 @@ import useMarkNotificationAsRead from '../features/notifications/useMarkNotifica
 import getNotificationRoute from '../utils/getNotificationRoute';
 import { NotificationLabel } from '../utils/NotificationLabels';
 import { timeAgo } from '../utils/timeAgo';
+import { useChapter } from '../features/chapters/useChapter';
 
 const StyledListItem = styled.li`
   display: flex;
@@ -96,11 +97,20 @@ function NotificationListItem({ inbox, onClose, markOnClick, variant }) {
     time,
     commentText,
     reviewText,
+    chapterId,
   } = inbox;
   const navigate = useNavigate();
   const { markAsRead } = useMarkNotificationAsRead();
   const { slug, title } = useGetSlugById(bookId);
-  const label = NotificationLabel({ notificationType, actorName, title });
+  const chapters = useChapter(bookId, chapterId);
+  const label = NotificationLabel({
+    chapterTitle: chapters?.data?.title,
+    chapterNumber: chapters?.data?.number,
+    bookTitle: title,
+    notificationType,
+    actorName,
+    title,
+  });
 
   function handleClick() {
     if (onClose) onClose(false);
@@ -114,6 +124,7 @@ function NotificationListItem({ inbox, onClose, markOnClick, variant }) {
       reviewId,
       slug,
       parentCommentId,
+      chapterId,
     });
 
     navigate(route.pathname, { state: route.state });

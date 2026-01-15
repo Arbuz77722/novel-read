@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import sanitizeHtml from 'sanitize-html';
 import { useBook } from '../books/useBook';
@@ -74,7 +74,7 @@ function ChapterContent() {
   );
   const { user, isAuthenticated } = useUser();
   const { chapters = [], isChaptersLoading } = useChapters(book?.id, 1);
-
+  const location = useLocation();
   useEffect(
     function () {
       function saveProgress() {
@@ -148,7 +148,7 @@ function ChapterContent() {
       ) : (
         <ChapterFooter>
           <CommentSection
-            targetId={book.id}
+            targetId={chapter.id}
             targetType='chapter'
             expandCommentId={location.state?.expandCommentId}
           />

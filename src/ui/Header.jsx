@@ -118,7 +118,11 @@ export default function Header() {
           </LeftGroup>
 
           <RightGroup>
-            <LoginNavigation isAuthenticated={isAuthenticated} />
+            <LoginNavigation
+              isPending={isPending}
+              user={user}
+              isAuthenticated={isAuthenticated}
+            />
           </RightGroup>
 
           <HamburgerWrapper>

@@ -66,7 +66,7 @@ function BookDescription() {
         <BookFooter>
           <CommentSection
             targetId={book.id}
-            targetType='chapter'
+            targetType='book'
             expandCommentId={location.state?.expandCommentId}
           />
         </BookFooter>

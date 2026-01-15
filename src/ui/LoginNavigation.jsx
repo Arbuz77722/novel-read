@@ -11,13 +11,14 @@ const StyledLoginNav = styled.ul`
   justify-content: center;
 `;
 
-function LoginNavigation({ isAuthenticated }) {
+function LoginNavigation({ isAuthenticated, user, isPending }) {
+  if (isPending) return null;
   return (
     <StyledLoginNav>
       <li>
         <DarkModeToggle />
       </li>
-      {isAuthenticated ? (
+      {isAuthenticated && user ? (
         <>
           <li>
             <StyledNavLink to='/profile/library'>

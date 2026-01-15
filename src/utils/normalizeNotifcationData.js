@@ -11,6 +11,7 @@ function normalizeNotifcationData(data) {
 
     notificationType: data.type,
     bookId: data.book_id,
+    chapterId: data.chapter_id,
     isRead: data.is_read,
     time: data.created_at,
 

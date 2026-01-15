@@ -25,6 +25,7 @@ export async function getNotificationInbox(limit) {
       id,
       type,
       book_id,
+      chapter_id,
       is_read,
       created_at,
       comment_id, review_id,
@@ -61,6 +62,7 @@ export async function getNotifications(page = 0, pageSize = 20) {
       is_read,
       created_at,
       comment_id, review_id,
+      chapter_id,
       parent_comment_id,
       actor:profiles  !actor_id (
         id,

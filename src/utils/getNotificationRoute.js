@@ -1,10 +1,27 @@
-function getNotificationRoute({ commentId, reviewId, slug, parentCommentId }) {
+function getNotificationRoute({
+  commentId,
+  reviewId,
+  slug,
+  chapterId,
+  parentCommentId,
+}) {
   if (reviewId) {
     return {
       pathname: `/books/${slug}/reviews`,
       state: { scrollTo: `review-${reviewId}` },
     };
   }
+
+  if (commentId && chapterId) {
+    return {
+      pathname: `/books/${slug}/chapter/${chapterId}`,
+      state: {
+        scrollTo: `comment-${commentId}`,
+        expandCommentId: parentCommentId || null,
+      },
+    };
+  }
+
   if (commentId) {
     return {
       pathname: `/books/${slug}`,
@@ -14,6 +31,7 @@ function getNotificationRoute({ commentId, reviewId, slug, parentCommentId }) {
       },
     };
   }
+
   return { pathname: `/books/${slug}` };
 }
 
