@@ -1,8 +1,7 @@
-import generateRandomAvatar from '../utils/generateAvatar';
 import supabase from './supabase';
 
 export async function signupApi({ fullName, userName, email, password }) {
-  const { data: authData, error: authError } = await supabase.auth.signUp({
+  const { data, error } = await supabase.auth.signUp({
     email,
     password,
     options: {
@@ -10,33 +9,10 @@ export async function signupApi({ fullName, userName, email, password }) {
     },
   });
 
-  if (authError) throw new Error(authError.message);
-  if (!authData.user) throw new Error('User not created');
+  if (error) throw new Error(error.message);
+  if (!data.user) throw new Error('User not created');
 
-  const userId = authData.user.id;
-  const avatar_url = generateRandomAvatar(userName);
-  console.log('Generated avatar:', avatar_url);
-
-  const { data: existingProfile, error: existingError } = await supabase
-    .from('profiles')
-    .select('id')
-    .eq('id', userId)
-    .maybeSingle();
-
-  if (!existingProfile) {
-    const { error: profileError } = await supabase.from('profiles').insert([
-      {
-        id: userId,
-        username: userName,
-        avatar_url,
-        bio: null,
-      },
-    ]);
-
-    if (profileError) throw new Error(profileError.message);
-  }
-
-  return { user: authData.user };
+  return { user: data.user };
 }
 
 export async function loginApi({ email, password }) {
