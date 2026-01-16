@@ -1,3 +1,4 @@
+import EmptyState from '../../../ui/EmptyState';
 import ProfileInfo from '../../../ui/ProfileInfo';
 import Spinner from '../../../ui/Spinner';
 import UserStats from '../../../ui/UserStats';
@@ -6,11 +7,20 @@ import useProfile from '../useProfile';
 import useGetUserStats from './useGetUserStats';
 
 function ProfileOverview() {
-  const { user } = useUser();
-  const { profile } = useProfile();
+  const { user, isUserPending } = useUser();
+  const { profile, isProfilePending } = useProfile();
   const { data: stats, isPending } = useGetUserStats();
+  if (isUserPending) return <Spinner />;
+  if (isPending || isProfilePending) return <Spinner />;
 
-  if (isPending || !user) return <Spinner />;
+  if (!profile) {
+    return (
+      <EmptyState
+        title='Setting up your profile'
+        description='This usually takes a moment for new accounts. If this takes longer than usual, try refreshing the page.'
+      />
+    );
+  }
 
   return (
     <div>

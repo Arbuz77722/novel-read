@@ -34,6 +34,7 @@ import DMCANotice from './ui/DmcaNotice';
 import ContactUs from './ui/ContactUs';
 import ResetPassword from './pages/ResetPassword';
 import ForgotPassword from './pages/ForgotPassword';
+import CheckEmail from './pages/CheckEmail';
 
 function App() {
   const queryClient = new QueryClient({
@@ -77,6 +78,10 @@ function App() {
         {
           path: 'reset-password',
           element: <ResetPassword />,
+        },
+        {
+          path: 'check-email',
+          element: <CheckEmail />,
         },
         {
           path: 'privacy-policy',

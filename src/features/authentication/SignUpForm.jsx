@@ -19,7 +19,7 @@ function SignUpForm() {
       {
         onSuccess: () => {
           reset();
-          navigate('/', { replace: true });
+          navigate('/check-email', { replace: true });
         },
       }
     );
