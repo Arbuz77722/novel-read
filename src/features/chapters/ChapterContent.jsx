@@ -11,6 +11,7 @@ import useUpdateLastReadChapter from '../profile/edit/useUpdateLastReadChapter';
 import CommentSection from '../comments/CommentSection';
 import { useUser } from '../authentication/useUser';
 import EmptyState from '../../ui/EmptyState';
+import ChapterContentSkeleton from '../../ui/skeletons/ChapterContentSkeleton';
 
 const StyledChapterContainer = styled.div`
   max-width: 900px;
@@ -86,15 +87,9 @@ function ChapterContent() {
     },
     [book?.id, chapterId, updateLastReadChapter]
   );
-  if (bookLoading || chapterLoading || isChaptersLoading) return <Spinner />;
+  if (bookLoading || chapterLoading || !chapter || isChaptersLoading)
+    return <ChapterContentSkeleton />;
   if (!book) return <p>Book not found.</p>;
-  if (!chapter)
-    return (
-      <EmptyState
-        title='Chapter is loading...'
-        description='Your chapter is on its way.'
-      />
-    );
   if (!chapters.length) return <p>No chapters found.</p>;
 
   function formatHtmlContent(rawHtml) {
