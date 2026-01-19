@@ -132,7 +132,10 @@ function NotificationListItem({ inbox, onClose, markOnClick, variant }) {
 
   return (
     <StyledListItem $variant={variant} onClick={handleClick}>
-      <Avatar src={actorAvatar} alt={actorName || 'User'} />
+      <Avatar
+        src={actorAvatar || '/placeholder-avatar.jpg'}
+        alt={actorName || 'User'}
+      />
       <Content>
         <Message>{label}</Message>
         {commentText && <Snippet>{commentText}</Snippet>}
