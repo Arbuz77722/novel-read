@@ -104,7 +104,9 @@ const IconWrapper = styled.span`
   display: flex;
   cursor: pointer;
   transform: ${({ active }) => (active ? 'scale(1.2)' : 'scale(1)')};
-  transition: transform 0.15s ease, color 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    color 0.15s ease;
   color: ${({ active }) =>
     active ? 'var(--color-brand-700)' : 'var(--color-grey-700)'};
 `;
@@ -148,8 +150,8 @@ function CommentCard({
   }, [myVote, upvotes, downvotes]);
 
   const handleVote = (vote) => {
+    if (voteMutation.isPending) return;
     const newVote = localVote === vote ? 0 : vote;
-
     if (localVote === 1) setLocalUp((n) => n - 1);
     if (localVote === -1) setLocalDown((n) => n - 1);
     if (newVote === 1) setLocalUp((n) => n + 1);

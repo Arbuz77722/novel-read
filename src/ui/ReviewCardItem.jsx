@@ -3,7 +3,7 @@ import StarRating from './StarRating';
 import ExpandableText from './ExpandableText';
 import { HiThumbDown, HiThumbUp } from 'react-icons/hi';
 import { useVote } from '../features/reviews/voteOnReview';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { displayRole } from '../utils/displayRole';
 
 const StyledReviewCard = styled.div`
@@ -96,7 +96,9 @@ const IconWrapper = styled.span`
   display: flex;
   cursor: pointer;
   transform: ${({ active }) => (active ? 'scale(1.2)' : 'scale(1)')};
-  transition: transform 0.15s ease, color 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    color 0.15s ease;
   color: ${({ active }) =>
     active ? 'var(--color-brand-700)' : 'var(--color-grey-700)'};
 `;
@@ -119,9 +121,15 @@ function ReviewCardItem({ review }) {
   const [localUp, setLocalUp] = useState(upvotes);
   const [localDown, setLocalDown] = useState(downvotes);
 
-  const handleVote = (vote) => {
-    const newVote = localVote === vote ? null : vote;
+  useEffect(() => {
+    setLocalVote(myVote);
+    setLocalUp(upvotes);
+    setLocalDown(downvotes);
+  }, [myVote, upvotes, downvotes]);
 
+  const handleVote = (vote) => {
+    if (voteMutation.isPending) return;
+    const newVote = localVote === vote ? null : vote;
     if (localVote === 1) setLocalUp((n) => n - 1);
     if (localVote === -1) setLocalDown((n) => n - 1);
     if (newVote === 1) setLocalUp((n) => n + 1);
