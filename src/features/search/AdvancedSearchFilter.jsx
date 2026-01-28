@@ -205,7 +205,6 @@ export default function AdvancedSearchFilter() {
     hasActiveFilters,
   } = useAdvancedSearch();
 
-  // Handlers
   const toggleType = (type) => {
     setDraftFilters((prev) => ({
       ...prev,
@@ -333,7 +332,7 @@ export default function AdvancedSearchFilter() {
             placeholder='Include tags...'
             options={tags}
             value={tags.filter((t) =>
-              draftFilters.includeTags?.includes(t.value)
+              draftFilters.includeTags?.includes(t.value),
             )}
             onChange={(selected) =>
               setDraftFilters((prev) => ({
@@ -347,7 +346,7 @@ export default function AdvancedSearchFilter() {
             placeholder='Exclude tags...'
             options={tags}
             value={tags.filter((t) =>
-              draftFilters.excludeTags?.includes(t.value)
+              draftFilters.excludeTags?.includes(t.value),
             )}
             onChange={(selected) =>
               setDraftFilters((prev) => ({

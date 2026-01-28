@@ -18,11 +18,6 @@ const NavButtons = styled.div`
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    transition: background 0.2s;
-
-    &:hover:not(:disabled) {
-      background: var(--color-brand-800);
-    }
 
     &:disabled {
       background: #ccc;
@@ -31,44 +26,29 @@ const NavButtons = styled.div`
   }
 `;
 
-export default function ChapterNavigation({
-  chapters = [],
-  slug,
-  currentChapterId,
-}) {
+export default function ChapterNavigation({ slug, nav }) {
   const navigate = useNavigate();
 
-  if (!chapters.length || !currentChapterId) return null;
-
-  const sorted = [...chapters].sort((a, b) => a.number - b.number);
-  const currentIndex = sorted.findIndex((c) => c.id === currentChapterId);
-
-  const prevChapter = currentIndex > 0 ? sorted[currentIndex - 1] : null;
-  const nextChapter =
-    currentIndex < sorted.length - 1 ? sorted[currentIndex + 1] : null;
+  if (!nav) return null;
 
   return (
     <NavButtons>
       <button
-        onClick={() =>
-          prevChapter && navigate(`/books/${slug}/chapter/${prevChapter.id}`)
-        }
-        disabled={!prevChapter}
+        disabled={!nav.prevId}
+        onClick={() => navigate(`/books/${slug}/chapter/${nav.prevId}`)}
       >
-        <HiArrowLeft size={18} /> Previous
+        <HiArrowLeft /> Previous
       </button>
 
       <button onClick={() => navigate(`/books/${slug}`)}>
-        <HiBookOpen size={18} /> TOC
+        <HiBookOpen /> TOC
       </button>
 
       <button
-        onClick={() =>
-          nextChapter && navigate(`/books/${slug}/chapter/${nextChapter.id}`)
-        }
-        disabled={!nextChapter}
+        disabled={!nav.nextId}
+        onClick={() => navigate(`/books/${slug}/chapter/${nav.nextId}`)}
       >
-        Next <HiArrowRight size={18} />
+        Next <HiArrowRight />
       </button>
     </NavButtons>
   );

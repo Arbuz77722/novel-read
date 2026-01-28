@@ -43,7 +43,7 @@ export async function getBooks({
       });
 
       bookIds = Object.keys(countMap).filter(
-        (bookId) => countMap[bookId] === genreIds.length
+        (bookId) => countMap[bookId] === genreIds.length,
       );
     } else {
       bookIds = [...new Set(genreMatches.map((g) => g.book_id))];
@@ -244,6 +244,32 @@ export async function getLatestChapter(chapterId) {
 
   return data;
 }
+
+export async function getChapterNeighbors(bookId, chapterNumber) {
+  const { data: prev } = await supabase
+    .from('chapters')
+    .select('id')
+    .eq('book_id', bookId)
+    .lt('number', chapterNumber)
+    .order('number', { ascending: false })
+    .limit(1)
+    .single();
+
+  const { data: next } = await supabase
+    .from('chapters')
+    .select('id')
+    .eq('book_id', bookId)
+    .gt('number', chapterNumber)
+    .order('number', { ascending: true })
+    .limit(1)
+    .single();
+
+  return {
+    prevId: prev?.id ?? null,
+    nextId: next?.id ?? null,
+  };
+}
+
 export async function getBook(slug) {
   const { data: book, error } = await supabase
     .from('books')
@@ -306,7 +332,7 @@ export async function getBookGenre(bookId) {
       *,
       book_genres!inner(genre_id),
       genres(id, name)
-    `
+    `,
     )
     .eq('id', bookId)
     .single();
@@ -329,7 +355,7 @@ export async function getBookTags(bookId) {
       *,
       book_tags!inner(tag_id),
       tags(id, name)
-    `
+    `,
     )
     .eq('id', bookId)
     .single();

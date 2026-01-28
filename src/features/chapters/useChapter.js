@@ -1,4 +1,3 @@
-// hooks/useChapter.js
 import { useQuery } from '@tanstack/react-query';
 import { getChapter } from '../../services/apiBooks';
 

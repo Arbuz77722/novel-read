@@ -1,24 +1,18 @@
 import { createContext, useContext, useEffect, useState } from 'react';
+import { useLocalStorageState } from '../hooks/localStorageState';
 
 const NotificationSettingsContext = createContext();
 
 const STORAGE_KEY = 'notification_settings';
 
 export function NotificationSettingsProvider({ children }) {
-  const [settings, setSettings] = useState(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    return saved
-      ? JSON.parse(saved)
-      : {
-          soundEnabled: true,
-          counterEnabled: true,
-        };
-  });
-
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
-  }, [settings]);
-
+  const [settings, setSettings] = useLocalStorageState(
+    {
+      soundEnabled: true,
+      counterEnabled: true,
+    },
+    STORAGE_KEY,
+  );
   return (
     <NotificationSettingsContext.Provider value={{ settings, setSettings }}>
       {children}
@@ -30,7 +24,7 @@ export function useNotificationSettings() {
   const context = useContext(NotificationSettingsContext);
   if (!context)
     throw new Error(
-      'useNotificationSettings must be used inside NotificationSettingsProvider'
+      'useNotificationSettings must be used inside NotificationSettingsProvider',
     );
   return context;
 }
