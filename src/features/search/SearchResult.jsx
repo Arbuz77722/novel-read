@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
-import Spinner from '../../ui/Spinner'; // your spinner component
-import Pagination from '../../ui/Pagination'; // reuse your pagination component
+import Spinner from '../../ui/Spinner';
+import Pagination from '../../ui/Pagination';
 import { useBookNavigation } from '../../hooks/useBookNavigation';
 import { PAGE_SIZE } from '../../utils/constants';
 import { useBooks } from '../books/useBooks';
@@ -52,9 +52,9 @@ const Empty = styled.p`
 export default function SearchResult() {
   const [searchParams] = useSearchParams();
   const query = searchParams.get('query') || '';
+  const page = Number(searchParams.get('page')) || 1;
   const { goToBook } = useBookNavigation();
   const { books, isBookLoading, count } = useBooks();
-
   if (isBookLoading) return <Spinner />;
 
   return (

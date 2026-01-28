@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { useAdvancedSearch } from '../../context/AdvancedSearchProvider';
 import useBrowseParams from '../../hooks/useBrowseParams';
 import useBooksBase from './useBooksBase';
@@ -11,6 +11,7 @@ export function useBooks({ mode } = {}) {
     (location.pathname.includes('advanced-search') ? 'advanced' : 'browse');
 
   const page = Number(new URLSearchParams(location.search).get('page')) || 1;
+  const query = new URLSearchParams(location.search).get('query') || '';
 
   if (resolvedMode === 'advanced') {
     const { appliedFilters } = useAdvancedSearch();
@@ -34,6 +35,7 @@ export function useBooks({ mode } = {}) {
       status,
       orderBy: order,
       page,
+      query,
       genres,
       types,
       languages,
@@ -62,5 +64,6 @@ export function useBooks({ mode } = {}) {
     genres: selectedGenres,
     types: selectedTypes,
     languages: selectedLanguages,
+    query,
   });
 }
