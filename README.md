@@ -56,10 +56,10 @@ Tech Stack:
 
 1. Frontend:
    React
-   React Router – routing & protected routes,
-   @tanstack/react-query (useQuery) – server state management
-   Context API – global app state
-   Styled Components – styling
+   React Router: routing & protected routes,
+   @tanstack/react-query (useQuery): server state management
+   Context API: global app state
+   Styled Components: styling
    Modular component architecture
 
 2. Backend:
