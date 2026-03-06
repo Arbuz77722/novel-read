@@ -120,7 +120,6 @@ export async function voteOnComments(commentId, vote) {
 
   if (!user) throw new Error('Login required');
 
-  // 🚨 HARD GUARD
   if (vote === null) {
     const { error } = await supabase
       .from('comment_votes')
@@ -135,7 +134,6 @@ export async function voteOnComments(commentId, vote) {
     return;
   }
 
-  // 🚨 Only numbers reach UPSERT
   if (vote !== 1 && vote !== -1) {
     throw new Error('Invalid vote value');
   }
