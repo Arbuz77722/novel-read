@@ -183,7 +183,7 @@ export default function SearchBox() {
   return (
     <Container ref={wrapperRef}>
       <ButtonIcon onClick={() => setOpen((o) => !o)}>
-        {open ? <X size={20} /> : <SearchIcon size={20} />}
+      <SearchIcon size={20} />
       </ButtonIcon>
 
       <SearchWrapper $open={open}>
