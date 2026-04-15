@@ -7,8 +7,8 @@ import { useState } from 'react';
 import useLogin from './useLogin';
 
 function LoginForm() {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const { login, isLoggingIn } = useLogin();
 
