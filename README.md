@@ -1,6 +1,6 @@
 ## Project Overview
 
-A full-featured book reading and discovery platform built as an interview project, focusing on scalable frontend architecture, secure backend integration, and real-world application patterns.
+A full-featured book reading and discovery platform, focusing on scalable frontend architecture, secure backend integration, and real-world application patterns.
 
 ---
 
